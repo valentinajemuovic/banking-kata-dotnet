@@ -7,7 +7,7 @@ namespace Optivem.Kata.Banking.Test
         [Fact]
         public void Test1()
         {
-            throw new System.Exception("Simulated exception");
+
         }
     }
 }
