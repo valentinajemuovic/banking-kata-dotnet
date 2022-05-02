@@ -9,7 +9,7 @@ namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
 {
     internal class BaseDataEnumerable : IEnumerable<object[]>
     {
-        private IEnumerable<object[]> _data;
+        private readonly IEnumerable<object[]> _data;
 
         public BaseDataEnumerable(IEnumerable<object[]> data)
         {
