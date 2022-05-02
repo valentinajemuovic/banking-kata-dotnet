@@ -46,5 +46,17 @@ namespace Optivem.Kata.Banking.Test.UseCases
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.LastNameEmpty);
         }
+
+        [Theory]
+        [ClassData(typeof(NegativeIntDataEnumerable))]
+        public async Task Should_throw_exception_given_negative_initial_balance(int balance)
+        {
+            var request = AnOpenAccount().Balance(balance).Build();
+
+            Func<Task> action = () => _useCase.HandleAsync(request);
+
+            await action.Should().ThrowAsync<ValidationException>()
+                .WithMessage(ValidationMessages.BalanceNegative);
+        }
     }
 }

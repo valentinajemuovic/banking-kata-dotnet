@@ -11,5 +11,6 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
         public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
+        public int Balance { get; set; }
     }
 }
