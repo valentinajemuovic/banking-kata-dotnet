@@ -4,8 +4,7 @@ using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
-using Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders;
-using Optivem.Kata.Banking.Test.Common.DataEnumerables;
+using Optivem.Kata.Banking.Test.Common.Data;
 using Optivem.Kata.Banking.Test.Common.Givens;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
@@ -58,7 +57,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [ClassData(typeof(EmptyStringDataEnumerable))]
+        [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_first_name(string firstName)
         {
             var request = OpenAccount().FirstName(firstName).Build();
@@ -70,7 +69,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [ClassData(typeof(EmptyStringDataEnumerable))]
+        [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_last_name(string lastName)
         {
             var request = OpenAccount().LastName(lastName).Build();
@@ -82,7 +81,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [ClassData(typeof(NegativeIntDataEnumerable))]
+        [ClassData(typeof(NegativeIntData))]
         public async Task Should_throw_exception_given_negative_initial_balance(int balance)
         {
             var request = OpenAccount().Balance(balance).Build();

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
+namespace Optivem.Kata.Banking.Test.Common.Data
 {
-    internal class NegativeIntDataEnumerable : BaseDataEnumerable
+    internal class NegativeIntData : BaseData
     {
         private static readonly IEnumerable<object[]> Data = new List<object[]>
         {
@@ -14,7 +14,7 @@ namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
             GetEntry(-10),
         };
 
-        public NegativeIntDataEnumerable() : base(Data)
+        public NegativeIntData() : base(Data)
         {
         }
 

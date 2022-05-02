@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
+namespace Optivem.Kata.Banking.Test.Common.Data
 {
-    internal class EmptyStringDataEnumerable : BaseDataEnumerable
+    internal class NullEmptyWhitespaceStringData : BaseData
     {
         private static readonly IEnumerable<object[]> Data = new List<object[]> 
         {
@@ -16,7 +16,7 @@ namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
             GetEntry("   ") 
         };
 
-        public EmptyStringDataEnumerable() : base(Data)
+        public NullEmptyWhitespaceStringData() : base(Data)
         {
         }
 

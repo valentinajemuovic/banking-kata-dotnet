@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
+namespace Optivem.Kata.Banking.Test.Common.Data
 {
-    internal class BaseDataEnumerable : IEnumerable<object[]>
+    internal class BaseData : IEnumerable<object[]>
     {
         private readonly IEnumerable<object[]> _data;
 
-        public BaseDataEnumerable(IEnumerable<object[]> data)
+        public BaseData(IEnumerable<object[]> data)
         {
             _data = data;
         }

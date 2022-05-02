@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.WithdrawFunds;
-using Optivem.Kata.Banking.Test.Common.DataEnumerables;
+using Optivem.Kata.Banking.Test.Common.Data;
 using System;
 using System.Threading.Tasks;
 using Xunit;
@@ -20,7 +20,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [ClassData(typeof(EmptyStringDataEnumerable))]
+        [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_account_number(string accountNumber)
         {
             var request = WithdrawFundsRequest().AccountNumber(accountNumber).Build();
