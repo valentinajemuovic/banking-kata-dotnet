@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Test.Common.DataEnumerables
 {
-    public class EmptyStringDataEnumerable : IEnumerable<object[]>
+    internal class EmptyStringDataEnumerable : BaseDataEnumerable
     {
-        public IEnumerator<object[]> GetEnumerator()
+        private static readonly IEnumerable<object[]> Data = new List<object[]> 
         {
-            var records = new List<object[]> { GetData(null), GetData(""), GetData("   ") };
-            return records.GetEnumerator();
+            GetEntry(null), 
+            GetEntry(""), 
+            GetEntry("   ") 
+        };
+
+        public EmptyStringDataEnumerable() : base(Data)
+        {
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        private static object[] GetData(string? value)
+        private static object[] GetEntry(string? value)
         {
             return new object[] { value };
         }

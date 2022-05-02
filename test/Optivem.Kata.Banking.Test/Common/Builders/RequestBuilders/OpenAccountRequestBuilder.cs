@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
 {
-    public class OpenAccountRequestBuilder
+    internal class OpenAccountRequestBuilder
     {
         private const string DefaultFirstName = "John";
         private const string DefaultLastName = "Smith";
