@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
+﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Optivem.Kata.Banking.Test.Common.Givens
     {
         public static void WillGenerate(this FakeAccountNumberGenerator generator, string accountNumber)
         {
-            generator.Add(accountNumber);
+            generator.Add(AccountNumber.From(accountNumber));
         }
     }
 }

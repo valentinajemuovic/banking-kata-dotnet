@@ -10,14 +10,14 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.Generators
 {
     public class FakeAccountNumberGenerator : IAccountNumberGenerator
     {
-        private readonly Queue<string> _queue;
+        private readonly Queue<AccountNumber> _queue;
 
         public FakeAccountNumberGenerator()
         {
-            _queue = new Queue<string>();
+            _queue = new Queue<AccountNumber>();
         }
 
-        public string Next()
+        public AccountNumber Next()
         {
             if(!_queue.Any())
             {
@@ -27,7 +27,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.Generators
             return _queue.Dequeue();
         }
 
-        public void Add(string accountNumber)
+        public void Add(AccountNumber accountNumber)
         {
             _queue.Enqueue(accountNumber);
         }

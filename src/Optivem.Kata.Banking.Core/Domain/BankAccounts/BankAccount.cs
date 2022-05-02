@@ -8,7 +8,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public class BankAccount
     {
-        public BankAccount(string accountNumber, string firstName, string lastName, int balance)
+        public BankAccount(AccountNumber accountNumber, string firstName, string lastName, int balance)
         {
             AccountNumber = accountNumber;
             FirstName = firstName;
@@ -16,7 +16,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
             Balance = balance;
         }
 
-        public string AccountNumber { get; }
+        public AccountNumber AccountNumber { get; }
         public string FirstName { get; }
         public string LastName { get; }
         public int Balance { get; private set; }

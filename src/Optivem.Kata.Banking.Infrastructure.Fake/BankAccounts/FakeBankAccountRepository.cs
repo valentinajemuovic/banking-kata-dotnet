@@ -11,14 +11,14 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
     {
         private static readonly BankAccount? NULL_ACCOUNT = null;
 
-        private readonly Dictionary<string, BankAccount> _bankAccounts;
+        private readonly Dictionary<AccountNumber, BankAccount> _bankAccounts;
 
         public FakeBankAccountRepository()
         {
-            _bankAccounts = new Dictionary<string, BankAccount>();
+            _bankAccounts = new Dictionary<AccountNumber, BankAccount>();
         }
 
-        public Task<BankAccount?> GetByAccountNumberAsync(string accountNumber)
+        public Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
         {
             if(!_bankAccounts.ContainsKey(accountNumber))
             {

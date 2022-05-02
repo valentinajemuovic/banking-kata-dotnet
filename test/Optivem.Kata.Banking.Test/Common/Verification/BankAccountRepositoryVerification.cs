@@ -14,7 +14,7 @@ namespace Optivem.Kata.Banking.Test.Common.Verification
     {
         public static async Task ShouldNotContainAsync(this IBankAccountRepository repository, string accountNumber)
         {
-            var retrievedBankAccount = await repository.GetByAccountNumberAsync(accountNumber);
+            var retrievedBankAccount = await repository.GetByAccountNumberAsync(AccountNumber.From(accountNumber));
 
             retrievedBankAccount.Should().BeNull();
         }

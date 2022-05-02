@@ -43,7 +43,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
 
             var response = new OpenAccountResponse
             {
-                AccountNumber = accountNumber,
+                AccountNumber = accountNumber.Value,
             };
 
             return Task.FromResult(response);

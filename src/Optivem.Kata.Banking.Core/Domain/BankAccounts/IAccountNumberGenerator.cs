@@ -8,6 +8,6 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public interface IAccountNumberGenerator
     {
-        string Next();
+        AccountNumber Next();
     }
 }
