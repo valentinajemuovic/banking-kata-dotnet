@@ -8,5 +8,11 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public class BankAccount
     {
+        public BankAccount(string accountNumber)
+        {
+            AccountNumber = accountNumber;
+        }
+
+        public string AccountNumber { get; }
     }
 }

@@ -17,7 +17,7 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
         private string _lastName;
         private int _balance;
 
-        public static OpenAccountRequestBuilder AnOpenAccount()
+        public static OpenAccountRequestBuilder OpenAccount()
         {
             return new OpenAccountRequestBuilder();
         }

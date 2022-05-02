@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
+using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
+
 namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 {
     public class FakeBankAccountRepositoryTest
@@ -26,18 +28,18 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             await _repository.ShouldNotContainAsync(accountNumber);
         }
 
+        [Fact]
+        public async Task Should_return_bank_account_when_account_number_exists()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+            var bankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Build();
 
-        /*
-         * 
-    @Test
-    void  {
-        var accountNumber = "GB36BARC20038032622823";
+            _repository.Add(bankAccount);
 
-        verifyThat(repository).doesNotContain(accountNumber);
-    }
-         * 
-         * 
-         */
+            await _repository.ShouldContainAsync(bankAccount);
+        }
 
     }
 }

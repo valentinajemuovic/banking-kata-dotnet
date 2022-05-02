@@ -9,5 +9,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
     public interface IBankAccountRepository
     {
         public Task<BankAccount?> GetByAccountNumberAsync(string accountNumber);
+
+        public void Add(BankAccount bankAccount);
     }
 }
