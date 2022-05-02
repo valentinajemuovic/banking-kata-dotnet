@@ -40,6 +40,10 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
             {
                 throw new ValidationException(ValidationMessages.InsufficientFunds);
             }
+
+            bankAccount.Withdraw(request.Amount);
+
+            _bankAccountRepository.Update(bankAccount);
         }
     }
 }
