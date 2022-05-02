@@ -11,6 +11,6 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       - name: Run Build
-        run: dotnet build Optivem.Kata.Banking.sln
+        run: dotnet build
       - name: Run Tests
-        run: dotnet test Optivem.Kata.Banking.sln
+        run: dotnet test
