@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
+
 namespace Optivem.Kata.Banking.Test.Common.Verification
 {
     public static class BankAccountRepositoryVerification
@@ -20,8 +22,22 @@ namespace Optivem.Kata.Banking.Test.Common.Verification
         public static async Task ShouldContainAsync(this IBankAccountRepository repository, BankAccount bankAccount)
         {
             var accountNumber = bankAccount.AccountNumber;
+
             var retrievedBankAccount = await repository.GetByAccountNumberAsync(accountNumber);
+
             retrievedBankAccount.Should().BeEquivalentTo(bankAccount);
+        }
+
+        public static Task ShouldContainAsync(this IBankAccountRepository repository, string accountNumber, string firstName, string lastName, int balance)
+        {
+            var expectedBankAccount = BankAccount()
+                .AccountNumber(accountNumber)
+                .FirstName(firstName)
+                .LastName(lastName)
+                .Balance(balance)
+                .Build();
+
+            return repository.ShouldContainAsync(expectedBankAccount);
         }
     }
 }

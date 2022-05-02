@@ -10,6 +10,9 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
     internal class BankAccountBuilder
     {
         private const string DefaultAccountNumber = "GB10BARC20040184197751";
+        private const string DefaultFirstName = "John";
+        private const string DefaultLastName = "Smith";
+        private const int DefaultBalance = 100;
 
         public static BankAccountBuilder BankAccount()
         {
@@ -17,21 +20,45 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
         }
 
         private string _accountNumber;
+        private string _firstName;
+        private string _lastName;
+        private int _balance;
 
         public BankAccountBuilder()
         {
             AccountNumber(DefaultAccountNumber);
+            FirstName(DefaultFirstName);
+            LastName(DefaultFirstName);
+            Balance(DefaultBalance);
         }
 
-        public BankAccountBuilder AccountNumber(String accountNumber)
+        public BankAccountBuilder AccountNumber(string accountNumber)
         {
             _accountNumber = accountNumber;
             return this;
         }
 
+        public BankAccountBuilder FirstName(string firstName)
+        {
+            _firstName = firstName;
+            return this;
+        }
+
+        public BankAccountBuilder LastName(string lastName)
+        {
+            _lastName = lastName;
+            return this;
+        }
+
+        public BankAccountBuilder Balance(int balance)
+        {
+            _balance = balance;
+            return this;
+        }
+
         public BankAccount Build()
         {
-            return new BankAccount(_accountNumber);
+            return new BankAccount(_accountNumber, _firstName, _lastName, _balance);
         }
 
     }

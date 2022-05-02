@@ -2,10 +2,12 @@
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
+using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders;
 using Optivem.Kata.Banking.Test.Common.DataEnumerables;
 using Optivem.Kata.Banking.Test.Common.Givens;
+using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,8 @@ namespace Optivem.Kata.Banking.Test.UseCases
         public OpenAccountUseCaseTest()
         {
             _accountNumberGenerator = new FakeAccountNumberGenerator();
-            _useCase = new OpenAccountUseCase(_accountNumberGenerator);
+            _bankAccountRepository = new FakeBankAccountRepository();
+            _useCase = new OpenAccountUseCase(_accountNumberGenerator, _bankAccountRepository);
         }
 
         [Theory]
@@ -50,6 +53,8 @@ namespace Optivem.Kata.Banking.Test.UseCases
             var response = await _useCase.HandleAsync(request);
 
             response.Should().BeEquivalentTo(expectedResponse);
+
+            await _bankAccountRepository.ShouldContainAsync(accountNumber, firstName, lastName, balance);
         }
 
         [Theory]

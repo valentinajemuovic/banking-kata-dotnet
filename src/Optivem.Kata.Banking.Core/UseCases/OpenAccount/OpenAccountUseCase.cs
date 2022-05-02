@@ -11,10 +11,12 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
     public class OpenAccountUseCase : IUseCase<OpenAccountRequest, OpenAccountResponse>
     {
         private readonly IAccountNumberGenerator _accountNumberGenerator;
+        private readonly IBankAccountRepository _bankAccountRepository;
 
-        public OpenAccountUseCase(IAccountNumberGenerator accountNumberGenerator)
+        public OpenAccountUseCase(IAccountNumberGenerator accountNumberGenerator, IBankAccountRepository bankAccountRepository)
         {
             _accountNumberGenerator = accountNumberGenerator;
+            _bankAccountRepository = bankAccountRepository;
         }
 
         public Task<OpenAccountResponse> HandleAsync(OpenAccountRequest request)
@@ -35,6 +37,9 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
             }
 
             var accountNumber = _accountNumberGenerator.Next();
+
+            var bankAccount = new BankAccount(accountNumber, request.FirstName, request.LastName, request.Balance);
+            _bankAccountRepository.Add(bankAccount);
 
             var response = new OpenAccountResponse
             {
