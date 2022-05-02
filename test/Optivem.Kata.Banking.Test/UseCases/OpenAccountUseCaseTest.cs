@@ -2,6 +2,7 @@
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
 using Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders;
+using Optivem.Kata.Banking.Test.Common.DataEnumerables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
 {
     public class OpenAccountUseCaseTest
     {
-        private OpenAccountUseCase _useCase;
+        private readonly OpenAccountUseCase _useCase;
 
         public OpenAccountUseCaseTest()
         {
@@ -23,9 +24,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("  ")]
+        [ClassData(typeof(EmptyStringDataEnumerable))]
         public async Task Should_throw_exception_given_empty_first_name(string firstName)
         {
             var request = AnOpenAccount().FirstName(firstName).Build();
@@ -37,9 +36,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("  ")]
+        [ClassData(typeof(EmptyStringDataEnumerable))]
         public async Task Should_throw_exception_given_empty_last_name(string lastName)
         {
             var request = AnOpenAccount().LastName(lastName).Build();
