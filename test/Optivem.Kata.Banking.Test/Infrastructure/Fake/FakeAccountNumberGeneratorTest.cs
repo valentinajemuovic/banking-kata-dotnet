@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Optivem.Kata.Banking.Infrastructure.Fake.Exceptions;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
-using Optivem.Kata.Banking.Test.Common.Assert;
 using Optivem.Kata.Banking.Test.Common.Givens;
 using System;
 using System.Collections.Generic;

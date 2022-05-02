@@ -63,7 +63,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
                 .WithMessage(ValidationMessages.BalanceNegative);
         }
 
-        [Theory(Skip = "TODO: Working on FakeAccountNumberGenerator")]
+        [Theory]
         [InlineData("John", "Smith", 0, "GB41OMQP68570038161775")]
         [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876")]
         public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance, string accountNumber)

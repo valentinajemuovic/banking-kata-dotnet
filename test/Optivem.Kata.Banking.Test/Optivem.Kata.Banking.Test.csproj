@@ -26,4 +26,8 @@
     <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Infrastructure.Fake\Optivem.Kata.Banking.Infrastructure.Fake.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Assert\" />
+  </ItemGroup>
+
 </Project>
