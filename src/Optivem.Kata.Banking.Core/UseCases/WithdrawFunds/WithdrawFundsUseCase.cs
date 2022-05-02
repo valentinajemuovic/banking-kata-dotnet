@@ -16,6 +16,11 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
                 throw new ValidationException(ValidationMessages.AccountNumberEmpty);
             }
 
+            if(request.Amount <= 0)
+            {
+                throw new ValidationException(ValidationMessages.AmountNotPositive);
+            }
+
             throw new NotImplementedException();
         }
     }
