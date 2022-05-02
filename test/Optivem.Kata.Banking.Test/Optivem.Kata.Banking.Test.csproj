@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj" />
-    <ProjectReference Include="..\Optivem.Kata.Banking.Infrastructure.Fake\Optivem.Kata.Banking.Infrastructure.Fake.csproj" />
+    <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj" />
+    <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Infrastructure.Fake\Optivem.Kata.Banking.Infrastructure.Fake.csproj" />
   </ItemGroup>
 
 </Project>
