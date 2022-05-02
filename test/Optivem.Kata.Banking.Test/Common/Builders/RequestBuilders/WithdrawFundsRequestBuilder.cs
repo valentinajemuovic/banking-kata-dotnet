@@ -24,7 +24,7 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
         public WithdrawFundsRequestBuilder()
         {
             AccountNumber(DefaultAccountNumber);
-            Amount(_amount);
+            Amount(DefaultAmount);
         }
 
         public WithdrawFundsRequestBuilder AccountNumber(string accountNumber)

@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.WithdrawFunds;
+using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Data;
 using System;
 using System.Threading.Tasks;
@@ -12,11 +14,13 @@ namespace Optivem.Kata.Banking.Test.UseCases
 {
     public class WithdrawFundsUseCaseTest
     {
+        private readonly IBankAccountRepository _bankAccountRepository;
         private readonly WithdrawFundsUseCase _useCase;
 
         public WithdrawFundsUseCaseTest()
         {
-            _useCase = new WithdrawFundsUseCase();
+            _bankAccountRepository = new FakeBankAccountRepository();
+            _useCase = new WithdrawFundsUseCase(_bankAccountRepository);
         }
 
         [Theory]
@@ -41,6 +45,17 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AmountNotPositive);
+        }
+
+        [Fact]
+        public async Task Should_throw_exception_given_non_existent_account_number()
+        {
+            var request = WithdrawFundsRequest().Build();
+
+            Func<Task> action = () => _useCase.HandleAsync(request);
+
+            await action.Should().ThrowAsync<ValidationException>()
+                .WithMessage(ValidationMessages.AccountNumberNotExist);
         }
     }
 }

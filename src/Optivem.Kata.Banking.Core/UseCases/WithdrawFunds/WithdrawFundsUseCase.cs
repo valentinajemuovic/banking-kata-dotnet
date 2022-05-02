@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Exceptions;
+﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,14 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
 {
     public class WithdrawFundsUseCase : IVoidUseCase<WithdrawFundsRequest>
     {
-        public Task HandleAsync(WithdrawFundsRequest request)
+        private readonly IBankAccountRepository _bankAccountRepository;
+
+        public WithdrawFundsUseCase(IBankAccountRepository bankAccountRepository)
+        {
+            _bankAccountRepository = bankAccountRepository;
+        }
+
+        public async Task HandleAsync(WithdrawFundsRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.AccountNumber))
             {
@@ -19,6 +27,13 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
             if(request.Amount <= 0)
             {
                 throw new ValidationException(ValidationMessages.AmountNotPositive);
+            }
+
+            var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(request.AccountNumber);
+
+            if(bankAccount == null)
+            {
+                throw new ValidationException(ValidationMessages.AccountNumberNotExist);
             }
 
             throw new NotImplementedException();

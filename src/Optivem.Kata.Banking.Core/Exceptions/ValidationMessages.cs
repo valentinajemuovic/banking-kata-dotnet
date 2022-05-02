@@ -13,5 +13,6 @@ namespace Optivem.Kata.Banking.Core.Exceptions
         public const string BalanceNegative = "Balance is negative";
         public const string AccountNumberEmpty = "Account number is empty";
         public const string AmountNotPositive = "Amount is not positive";
+        public const string AccountNumberNotExist = "Account number does not exist";
     }
 }
