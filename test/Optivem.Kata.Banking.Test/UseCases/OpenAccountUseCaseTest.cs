@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
+using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders;
 using Optivem.Kata.Banking.Test.Common.DataEnumerables;
+using Optivem.Kata.Banking.Test.Common.Givens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +18,13 @@ namespace Optivem.Kata.Banking.Test.UseCases
 {
     public class OpenAccountUseCaseTest
     {
+        private readonly FakeAccountNumberGenerator _accountNumberGenerator;
         private readonly OpenAccountUseCase _useCase;
 
         public OpenAccountUseCaseTest()
         {
-            _useCase = new OpenAccountUseCase();
+            _accountNumberGenerator = new FakeAccountNumberGenerator();
+            _useCase = new OpenAccountUseCase(_accountNumberGenerator);
         }
 
         [Theory]
@@ -57,6 +61,29 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.BalanceNegative);
+        }
+
+        [Theory(Skip = "TODO: Working on FakeAccountNumberGenerator")]
+        [InlineData("John", "Smith", 0, "GB41OMQP68570038161775")]
+        [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876")]
+        public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance, string accountNumber)
+        {
+            _accountNumberGenerator.SetupNext(accountNumber);
+
+            var request = AnOpenAccount()
+                .FirstName(firstName)
+                .LastName(lastName)
+                .Balance(balance)
+                .Build();
+
+            var expectedResponse = new OpenAccountResponse
+            {
+                AccountNumber = accountNumber,
+            };
+
+            var response = await _useCase.HandleAsync(request);
+
+            response.Should().BeEquivalentTo(expectedResponse);
         }
     }
 }
