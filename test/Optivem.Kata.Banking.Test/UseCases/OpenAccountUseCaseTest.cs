@@ -36,7 +36,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876")]
         public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance, string accountNumber)
         {
-            _accountNumberGenerator.SetupNext(accountNumber);
+            _accountNumberGenerator.WillGenerate(accountNumber);
 
             var request = OpenAccount()
                 .FirstName(firstName)

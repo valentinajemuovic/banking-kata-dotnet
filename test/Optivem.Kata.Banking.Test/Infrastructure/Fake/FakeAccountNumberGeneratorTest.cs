@@ -34,7 +34,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
         {
             var expectedValue = "GB54BARC20032611545669";
 
-            _generator.SetupNext(expectedValue);
+            _generator.WillGenerate(expectedValue);
 
             ShouldGenerateNext(expectedValue);
             ShouldThrowExceptionOnNext();
@@ -47,9 +47,9 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var expectedValue2 = "GB36BARC20038032622823";
             var expectedValue3 = "GB10BARC20040184197751";
 
-            _generator.SetupNext(expectedValue1);
-            _generator.SetupNext(expectedValue2);
-            _generator.SetupNext(expectedValue3);
+            _generator.WillGenerate(expectedValue1);
+            _generator.WillGenerate(expectedValue2);
+            _generator.WillGenerate(expectedValue3);
 
             ShouldGenerateNext(expectedValue1);
             ShouldGenerateNext(expectedValue2);

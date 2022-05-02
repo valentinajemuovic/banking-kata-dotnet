@@ -9,7 +9,7 @@ namespace Optivem.Kata.Banking.Test.Common.Givens
 {
     public static class FakeAccountNumberGeneratorSetup
     {
-        public static void SetupNext(this FakeAccountNumberGenerator generator, string accountNumber)
+        public static void WillGenerate(this FakeAccountNumberGenerator generator, string accountNumber)
         {
             generator.Add(accountNumber);
         }

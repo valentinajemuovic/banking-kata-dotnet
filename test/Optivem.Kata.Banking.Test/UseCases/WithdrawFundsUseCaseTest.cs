@@ -4,6 +4,7 @@ using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.WithdrawFunds;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Data;
+using Optivem.Kata.Banking.Test.Common.Setup;
 using System;
 using System.Threading.Tasks;
 using Xunit;
@@ -56,6 +57,26 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberNotExist);
+        }
+
+        [Fact]
+        public async Task Should_throw_exception_given_insufficient_funds()
+        {
+            var accountNumber = "GB10BARC20040184197751";
+            var balance = 140;
+            var amount = 141;
+
+            _bankAccountRepository.AlreadyContains(accountNumber, balance);
+
+            var request = WithdrawFundsRequest()
+                .AccountNumber(accountNumber)
+                .Amount(amount)
+                .Build();
+
+            Func<Task> action = () => _useCase.HandleAsync(request);
+
+            await action.Should().ThrowAsync<ValidationException>()
+                .WithMessage(ValidationMessages.InsufficientFunds);
         }
     }
 }

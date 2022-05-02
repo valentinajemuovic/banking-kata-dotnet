@@ -36,6 +36,11 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
                 throw new ValidationException(ValidationMessages.AccountNumberNotExist);
             }
 
+            if(bankAccount.Balance < request.Amount)
+            {
+                throw new ValidationException(ValidationMessages.InsufficientFunds);
+            }
+
             throw new NotImplementedException();
         }
     }
