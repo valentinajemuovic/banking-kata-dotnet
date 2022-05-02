@@ -16,6 +16,11 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
                 throw new ValidationException(ValidationMessages.FirstNameEmpty);
             }
 
+            if (string.IsNullOrWhiteSpace(request.LastName))
+            {
+                throw new ValidationException(ValidationMessages.LastNameEmpty);
+            }
+
             throw new NotImplementedException();
         }
     }
