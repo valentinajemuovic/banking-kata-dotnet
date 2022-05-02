@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Exceptions;
+﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
 {
     public class OpenAccountUseCase : IUseCase<OpenAccountRequest, OpenAccountResponse>
     {
+        private IAccountNumberGenerator accountNumberGenerator;
+
+        public OpenAccountUseCase(IAccountNumberGenerator accountNumberGenerator)
+        {
+            this.accountNumberGenerator = accountNumberGenerator;
+        }
+
         public Task<OpenAccountResponse> HandleAsync(OpenAccountRequest request)
         {
             if(string.IsNullOrWhiteSpace(request.FirstName))
