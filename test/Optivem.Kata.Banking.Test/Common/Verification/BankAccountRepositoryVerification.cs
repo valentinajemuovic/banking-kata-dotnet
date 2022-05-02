@@ -39,5 +39,15 @@ namespace Optivem.Kata.Banking.Test.Common.Verification
 
             return repository.ShouldContainAsync(expectedBankAccount);
         }
+
+        public static Task ShouldContainAsync(this IBankAccountRepository repository, string accountNumber, int balance)
+        {
+            var expectedBankAccount = BankAccount()
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
+
+            return repository.ShouldContainAsync(expectedBankAccount);
+        }
     }
 }

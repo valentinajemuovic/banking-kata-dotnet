@@ -34,5 +34,10 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
         {
             _bankAccounts.Add(bankAccount.AccountNumber, bankAccount);
         }
+
+        public void Update(BankAccount bankAccount)
+        {
+            _bankAccounts[bankAccount.AccountNumber] = bankAccount;
+        }
     }
 }

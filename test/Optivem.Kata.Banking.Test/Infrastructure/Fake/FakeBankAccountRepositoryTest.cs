@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
+﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 {
     public class FakeBankAccountRepositoryTest
     {
-        private readonly FakeBankAccountRepository _repository;
+        private readonly IBankAccountRepository _repository;
 
         public FakeBankAccountRepositoryTest()
         {
@@ -41,5 +42,31 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             await _repository.ShouldContainAsync(bankAccount);
         }
 
+        [Fact]
+        public async Task Should_retrieve_updated_bank_account_after_update()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+            var initialBalance = 40;
+            var withdrawalAmount = 10;
+            var finalBalance = 30;
+
+            var initialBankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(initialBalance)
+                    .Build();
+
+            var expectedFinalBankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(finalBalance)
+                    .Build();
+
+            _repository.Add(initialBankAccount);
+
+            initialBankAccount.Withdraw(withdrawalAmount);
+
+            _repository.Update(initialBankAccount);
+
+            await _repository.ShouldContainAsync(expectedFinalBankAccount);
+        }
     }
 }

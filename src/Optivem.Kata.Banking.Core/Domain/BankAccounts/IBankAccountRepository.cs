@@ -11,5 +11,6 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         public Task<BankAccount?> GetByAccountNumberAsync(string accountNumber);
 
         public void Add(BankAccount bankAccount);
+        void Update(BankAccount bankAccount);
     }
 }

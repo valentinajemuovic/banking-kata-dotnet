@@ -19,6 +19,11 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         public string AccountNumber { get; }
         public string FirstName { get; }
         public string LastName { get; }
-        public int Balance { get; }
+        public int Balance { get; private set; }
+
+        public void Withdraw(int amount)
+        {
+            Balance -= amount;
+        }
     }
 }
