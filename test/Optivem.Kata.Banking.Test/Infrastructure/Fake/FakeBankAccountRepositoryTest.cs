@@ -62,7 +62,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             _repository.Add(initialBankAccount);
 
-            initialBankAccount.Withdraw(withdrawalAmount);
+            initialBankAccount.Withdraw(Money.From(withdrawalAmount));
 
             _repository.Update(initialBankAccount);
 

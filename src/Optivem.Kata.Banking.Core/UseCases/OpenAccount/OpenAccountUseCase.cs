@@ -31,14 +31,17 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
                 throw new ValidationException(ValidationMessages.LastNameEmpty);
             }
 
-            if(request.Balance < 0)
+            var balance = Money.From(request.Balance);
+
+            if (balance.IsNegative())
             {
                 throw new ValidationException(ValidationMessages.BalanceNegative);
             }
 
             var accountNumber = _accountNumberGenerator.Next();
 
-            var bankAccount = new BankAccount(accountNumber, request.FirstName, request.LastName, request.Balance);
+
+            var bankAccount = new BankAccount(accountNumber, request.FirstName, request.LastName, balance);
             _bankAccountRepository.Add(bankAccount);
 
             var response = new OpenAccountResponse

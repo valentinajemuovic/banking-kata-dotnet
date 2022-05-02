@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.Exceptions;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using Optivem.Kata.Banking.Test.Common.Givens;
@@ -61,7 +62,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
         private void ShouldGenerateNext(string accountNumber)
         {
             var next = _generator.Next();
-            next.Should().Be(accountNumber);
+            next.Should().BeEquivalentTo(AccountNumber.From(accountNumber));
         }
 
         private void ShouldThrowExceptionOnNext()

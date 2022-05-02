@@ -20,8 +20,9 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
         public async Task HandleAsync(WithdrawFundsRequest request)
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
+            var amount = Money.From(request.Amount);
 
-            if(request.Amount <= 0)
+            if(amount.IsZeroOrNegative())
             {
                 throw new ValidationException(ValidationMessages.AmountNotPositive);
             }
@@ -33,12 +34,8 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
                 throw new ValidationException(ValidationMessages.AccountNumberNotExist);
             }
 
-            if(bankAccount.Balance < request.Amount)
-            {
-                throw new ValidationException(ValidationMessages.InsufficientFunds);
-            }
 
-            bankAccount.Withdraw(request.Amount);
+            bankAccount.Withdraw(amount);
 
             _bankAccountRepository.Update(bankAccount);
         }

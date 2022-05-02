@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optivem.Kata.Banking.Core.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,13 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public class BankAccount
     {
-        public BankAccount(AccountNumber accountNumber, string firstName, string lastName, int balance)
+        public BankAccount(AccountNumber accountNumber, string firstName, string lastName, Money balance)
         {
+            if (balance.IsNegative())
+            {
+                throw new ValidationException(ValidationMessages.BalanceNegative);
+            }
+
             AccountNumber = accountNumber;
             FirstName = firstName;
             LastName = lastName;
@@ -19,11 +25,21 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         public AccountNumber AccountNumber { get; }
         public string FirstName { get; }
         public string LastName { get; }
-        public int Balance { get; private set; }
+        public Money Balance { get; private set; }
 
-        public void Withdraw(int amount)
+        public void Withdraw(Money amount)
         {
-            Balance -= amount;
+            if (amount.IsZeroOrNegative())
+            {
+                throw new ValidationException(ValidationMessages.AmountNotPositive);
+            }
+
+            if (Balance.IsLessThan(amount))
+            {
+                throw new ValidationException(ValidationMessages.InsufficientFunds);
+            }
+
+            Balance = Balance.Subtract(amount);
         }
     }
 }
