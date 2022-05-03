@@ -32,7 +32,10 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
 
         public void Add(BankAccount bankAccount)
         {
-            _bankAccounts.Add(bankAccount.AccountNumber, bankAccount);
+            var accountNumber = bankAccount.AccountNumber;
+            var clonedBankAccount = new BankAccount(bankAccount);
+
+            _bankAccounts.Add(accountNumber, clonedBankAccount);
         }
 
         public void Update(BankAccount bankAccount)

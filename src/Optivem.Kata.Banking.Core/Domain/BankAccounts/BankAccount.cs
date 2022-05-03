@@ -22,6 +22,12 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
             Balance = balance;
         }
 
+        public BankAccount(BankAccount other)
+            : this(other.AccountNumber, other.FirstName, other.LastName, other.Balance)
+        {
+
+        }
+
         public AccountNumber AccountNumber { get; }
         public string FirstName { get; }
         public string LastName { get; }

@@ -68,5 +68,29 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             await _repository.ShouldContainAsync(expectedFinalBankAccount);
         }
+
+        [Fact]
+        public async Task Should_not_be_able_to_change_bank_account_after_add()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+            var initialBalance = 40;
+            var withdrawalAmount = 10;
+
+            var initialBankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(initialBalance)
+                    .Build();
+
+            var expectedFinalBankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(initialBalance)
+                    .Build();
+
+            _repository.Add(initialBankAccount);
+
+            initialBankAccount.Withdraw(Money.From(withdrawalAmount));
+
+            await _repository.ShouldContainAsync(expectedFinalBankAccount);
+        }
     }
 }
