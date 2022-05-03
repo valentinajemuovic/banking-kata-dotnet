@@ -28,7 +28,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [Theory]
         [InlineData("GB10BARC20040184197751", 70, 30, 40)]
         [InlineData("GB36BMFK75394735916876", 100, 100, 0)]
-        public async Task Should_withdraw_funds_given_valid_request(String accountNumber, int initialBalance, int amount, int expectedFinalBalance)
+        public async Task Should_withdraw_funds_given_valid_request(string accountNumber, int initialBalance, int amount, int expectedFinalBalance)
         {
             _bankAccountRepository.AlreadyContains(accountNumber, initialBalance);
 

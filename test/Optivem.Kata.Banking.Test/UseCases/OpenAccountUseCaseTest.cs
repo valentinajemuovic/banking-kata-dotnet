@@ -34,9 +34,9 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [Theory]
         [InlineData("John", "Smith", 0, "GB41OMQP68570038161775")]
         [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876")]
-        public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance, string accountNumber)
+        public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance, string generatedAccountNumber)
         {
-            _accountNumberGenerator.WillGenerate(accountNumber);
+            _accountNumberGenerator.WillGenerate(generatedAccountNumber);
 
             var request = OpenAccount()
                 .FirstName(firstName)
@@ -46,14 +46,14 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             var expectedResponse = new OpenAccountResponse
             {
-                AccountNumber = accountNumber,
+                AccountNumber = generatedAccountNumber,
             };
 
             var response = await _useCase.HandleAsync(request);
 
             response.Should().BeEquivalentTo(expectedResponse);
 
-            await _bankAccountRepository.ShouldContainAsync(accountNumber, firstName, lastName, balance);
+            await _bankAccountRepository.ShouldContainAsync(generatedAccountNumber, firstName, lastName, balance);
         }
 
         [Theory]
