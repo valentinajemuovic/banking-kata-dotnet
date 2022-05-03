@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
@@ -152,5 +153,29 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             await _repository.ShouldContainAsync(expectedBankAccount);
         }
 
+        [Fact]
+        public void Should_throw_exception_when_attempt_add_bank_account_with_same_account_number_twice()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+            var balance = 40;
+            var balance2 = 60;
+
+            var bankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(balance)
+                    .Build();
+
+            var bankAccount2 = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(balance2)
+                    .Build();
+
+            _repository.Add(bankAccount);
+
+            Action action = () => _repository.Add(bankAccount2);
+
+            action.Should().ThrowExactly<RepositoryException>()
+                .WithMessage(RepositoryMessages.RepositoryConstraintValidation);
+        }
     }
 }

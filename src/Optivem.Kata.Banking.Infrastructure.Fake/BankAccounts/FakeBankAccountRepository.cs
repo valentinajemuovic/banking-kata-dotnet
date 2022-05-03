@@ -1,4 +1,5 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
 
         public Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
         {
-            if(!_bankAccounts.ContainsKey(accountNumber))
+            if(!Contains(accountNumber))
             {
                 return Task.FromResult(NULL_ACCOUNT);
             }
@@ -35,6 +36,13 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
         public void Add(BankAccount bankAccount)
         {
             var accountNumber = bankAccount.AccountNumber;
+
+            if(Contains(accountNumber))
+            {
+                throw new RepositoryException(RepositoryMessages.RepositoryConstraintValidation);
+            }
+
+
             var clonedBankAccount = new BankAccount(bankAccount);
 
             _bankAccounts.Add(accountNumber, clonedBankAccount);
@@ -45,6 +53,11 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
             var clonedBankAccount = new BankAccount(bankAccount);
 
             _bankAccounts[bankAccount.AccountNumber] = clonedBankAccount;
+        }
+
+        private bool Contains(AccountNumber accountNumber)
+        {
+            return _bankAccounts.ContainsKey(accountNumber);
         }
     }
 }
