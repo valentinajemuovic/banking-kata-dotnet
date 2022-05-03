@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using FluentAssertions;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
@@ -73,17 +74,17 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
         public async Task Should_not_be_able_to_change_bank_account_after_add()
         {
             var accountNumber = "GB36BARC20038032622823";
-            var initialBalance = 40;
+            var balance = 40;
             var withdrawalAmount = 10;
 
             var initialBankAccount = BankAccount()
                     .AccountNumber(accountNumber)
-                    .Balance(initialBalance)
+                    .Balance(balance)
                     .Build();
 
             var expectedFinalBankAccount = BankAccount()
                     .AccountNumber(accountNumber)
-                    .Balance(initialBalance)
+                    .Balance(balance)
                     .Build();
 
             _repository.Add(initialBankAccount);
@@ -92,5 +93,64 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             await _repository.ShouldContainAsync(expectedFinalBankAccount);
         }
+
+        [Fact]
+        public async Task Should_not_be_able_to_change_bank_account_after_find()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+            var balance = 40;
+            var withdrawalAmount = 10;
+
+            var bankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(balance)
+                    .Build();
+
+            var expectedBankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(balance)
+                    .Build();
+
+            _repository.Add(bankAccount);
+
+            var retrievedBankAccount = await _repository.GetByAccountNumberAsync(AccountNumber.From(accountNumber));
+
+            retrievedBankAccount.Should().NotBeNull();
+
+            retrievedBankAccount.Withdraw(Money.From(withdrawalAmount));
+
+            await _repository.ShouldContainAsync(expectedBankAccount);
+        }
+
+        [Fact]
+        public async Task Should_not_be_able_to_change_bank_account_after_update()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+            var balance = 40;
+            var withdrawalAmount = 10;
+
+            var bankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(balance)
+                    .Build();
+
+            var expectedBankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Balance(balance)
+                    .Build();
+
+            _repository.Add(bankAccount);
+
+            var retrievedBankAccount = await _repository.GetByAccountNumberAsync(AccountNumber.From(accountNumber));
+
+            retrievedBankAccount.Should().NotBeNull();
+
+            _repository.Update(retrievedBankAccount);
+
+            retrievedBankAccount.Withdraw(Money.From(withdrawalAmount));
+
+            await _repository.ShouldContainAsync(expectedBankAccount);
+        }
+
     }
 }

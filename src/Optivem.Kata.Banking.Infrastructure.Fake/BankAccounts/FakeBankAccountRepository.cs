@@ -25,9 +25,11 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
                 return Task.FromResult(NULL_ACCOUNT);
             }
 
-            BankAccount? bankAccount = _bankAccounts[accountNumber];
+            BankAccount bankAccount = _bankAccounts[accountNumber];
 
-            return Task.FromResult(bankAccount);
+            var clonedBankAccount = new BankAccount(bankAccount);
+
+            return Task.FromResult(clonedBankAccount);
         }
 
         public void Add(BankAccount bankAccount)
@@ -40,7 +42,9 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
 
         public void Update(BankAccount bankAccount)
         {
-            _bankAccounts[bankAccount.AccountNumber] = bankAccount;
+            var clonedBankAccount = new BankAccount(bankAccount);
+
+            _bankAccounts[bankAccount.AccountNumber] = clonedBankAccount;
         }
     }
 }
