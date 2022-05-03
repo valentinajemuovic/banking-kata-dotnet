@@ -9,7 +9,12 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public struct AccountNumber
     {
-        public AccountNumber(string? value)
+        public static AccountNumber From(string? value)
+        {
+            return new AccountNumber(value);
+        }
+
+        private AccountNumber(string? value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -20,10 +25,5 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         }
 
         public string Value { get; }
-
-        public static AccountNumber From(string? value)
-        {
-            return new AccountNumber(value);
-        }
     }
 }
