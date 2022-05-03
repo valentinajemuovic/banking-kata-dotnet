@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optivem.Kata.Banking.Core.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,27 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         private Balance(Money value)
         {
+            if (value.IsNegative())
+            {
+                throw new ValidationException(ValidationMessages.BalanceNegative);
+            }
+
             MoneyValue = value;
         }
 
         public Money MoneyValue { get; }
 
         public int IntValue => MoneyValue.IntValue;
+
+        public bool IsLessThan(TransactionAmount amount)
+        {
+            return MoneyValue.IsLessThan(amount.MoneyValue);
+        }
+
+        public Balance Subtract(TransactionAmount amount)
+        {
+            var result = MoneyValue.Subtract(amount.MoneyValue);
+            return From(result);
+        }
     }
 }

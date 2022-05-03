@@ -64,7 +64,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             _repository.Add(initialBankAccount);
 
-            initialBankAccount.Withdraw(Money.From(withdrawalAmount));
+            initialBankAccount.Withdraw(TransactionAmount.From(withdrawalAmount));
 
             _repository.Update(initialBankAccount);
 
@@ -90,7 +90,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             _repository.Add(initialBankAccount);
 
-            initialBankAccount.Withdraw(Money.From(withdrawalAmount));
+            initialBankAccount.Withdraw(TransactionAmount.From(withdrawalAmount));
 
             await _repository.ShouldContainAsync(expectedFinalBankAccount);
         }
@@ -118,7 +118,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             retrievedBankAccount.Should().NotBeNull();
 
-            retrievedBankAccount.Withdraw(Money.From(withdrawalAmount));
+            retrievedBankAccount.Withdraw(TransactionAmount.From(withdrawalAmount));
 
             await _repository.ShouldContainAsync(expectedBankAccount);
         }
@@ -148,7 +148,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             _repository.Update(retrievedBankAccount);
 
-            retrievedBankAccount.Withdraw(Money.From(withdrawalAmount));
+            retrievedBankAccount.Withdraw(TransactionAmount.From(withdrawalAmount));
 
             await _repository.ShouldContainAsync(expectedBankAccount);
         }

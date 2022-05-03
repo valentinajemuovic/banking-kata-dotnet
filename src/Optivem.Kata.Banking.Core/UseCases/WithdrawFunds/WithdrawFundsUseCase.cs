@@ -20,12 +20,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
         public async Task HandleAsync(WithdrawFundsRequest request)
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
-            var amount = Money.From(request.Amount);
-
-            if(amount.IsZeroOrNegative())
-            {
-                throw new ValidationException(ValidationMessages.AmountNotPositive);
-            }
+            var amount = TransactionAmount.From(request.Amount);
 
             var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
 
