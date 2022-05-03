@@ -50,9 +50,16 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
 
         public void Update(BankAccount bankAccount)
         {
+            var accountNumber = bankAccount.AccountNumber;
+
+            if(!Contains(accountNumber))
+            {
+                throw new RepositoryException(RepositoryMessages.RepositoryCannotUpdateNonExistent);
+            }
+
             var clonedBankAccount = new BankAccount(bankAccount);
 
-            _bankAccounts[bankAccount.AccountNumber] = clonedBankAccount;
+            _bankAccounts[accountNumber] = clonedBankAccount;
         }
 
         private bool Contains(AccountNumber accountNumber)

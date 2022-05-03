@@ -177,5 +177,20 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             action.Should().ThrowExactly<RepositoryException>()
                 .WithMessage(RepositoryMessages.RepositoryConstraintValidation);
         }
+
+        [Fact]
+        public void Should_throw_exception_when_attempt_to_update_non_existent_bank_account()
+        {
+            var accountNumber = "GB36BARC20038032622823";
+
+            var bankAccount = BankAccount()
+                    .AccountNumber(accountNumber)
+                    .Build();
+
+            Action action = () => _repository.Update(bankAccount);
+
+            action.Should().ThrowExactly<RepositoryException>()
+                .WithMessage(RepositoryMessages.RepositoryCannotUpdateNonExistent);
+        }
     }
 }
