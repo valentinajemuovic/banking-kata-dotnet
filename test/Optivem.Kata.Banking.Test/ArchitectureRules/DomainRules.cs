@@ -1,3 +1,5 @@
+using ArchUnitNET.Fluent.Syntax.Elements.Members.MethodMembers;
+using ArchUnitNET.Fluent.Syntax.Elements.Members.PropertyMembers;
 using ArchUnitNET.Fluent.Syntax.Elements.Types;
 using Xunit;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
@@ -11,8 +13,18 @@ public class DomainRules
             .That()
             .ResideInNamespace(Namespaces.Domain, true);
 
+    private static GivenMethodMembersConjunction DomainMethods() =>
+        MethodMembers()
+            .That()
+            .AreDeclaredIn(DomainTypes());
+
+    private static GivenPropertyMembersConjunction DomainProperties() =>
+        PropertyMembers()
+            .That()
+            .AreDeclaredIn(DomainTypes());
+
     [Fact]
-    public void DomainCanOnlyAccessDomainItselfAndExceptions() =>
+    public void CanOnlyAccessDomainItselfAndExceptions() =>
         DomainTypes()
             .Should()
             .OnlyDependOnTypesThat()
@@ -20,7 +32,7 @@ public class DomainRules
             .Check();
 
     [Fact]
-    public void DomainTypesShouldStayPure() =>
+    public void TypesShouldStayPure() =>
         DomainTypes()
             .Should()
             .NotHaveAnyAttributesThat()
@@ -28,20 +40,16 @@ public class DomainRules
             .Check();
 
     [Fact]
-    public void DomainPropertiesShouldStayPure() =>
-        PropertyMembers()
-            .That()
-            .AreDeclaredIn(DomainTypes())
+    public void PropertiesShouldStayPure() =>
+        DomainProperties()
             .Should()
             .NotHaveAnyAttributesThat()
             .AreNot(Namespaces.CompilerServices, true)
             .Check();
 
     [Fact]
-    public void DomainMethodsShouldStayPure() =>
-        MethodMembers()
-            .That()
-            .AreDeclaredIn(DomainTypes())
+    public void MethodsShouldStayPure() =>
+        DomainMethods()
             .Should()
             .NotHaveAnyAttributesThat()
             .AreNot(Namespaces.CompilerServices, true)
