@@ -1,9 +1,4 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 {
@@ -62,6 +57,5 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
             var balance = Core.Domain.BankAccounts.Balance.From(_balance);
             return new BankAccount(accountNumber, _firstName, _lastName, balance);
         }
-
     }
 }

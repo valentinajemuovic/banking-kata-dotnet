@@ -3,11 +3,6 @@ using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.Exceptions;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using Optivem.Kata.Banking.Test.Common.Givens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Optivem.Kata.Banking.Test.Infrastructure.Fake

@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.WithdrawFunds;
@@ -6,10 +8,7 @@ using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Data;
 using Optivem.Kata.Banking.Test.Common.Setup;
 using Optivem.Kata.Banking.Test.Common.Verification;
-using System;
-using System.Threading.Tasks;
 using Xunit;
-
 using static Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders.WithdrawFundsRequestBuilder;
 
 namespace Optivem.Kata.Banking.Test.UseCases
@@ -28,7 +27,8 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [Theory]
         [InlineData("GB10BARC20040184197751", 70, 30, 40)]
         [InlineData("GB36BMFK75394735916876", 100, 100, 0)]
-        public async Task Should_withdraw_funds_given_valid_request(string accountNumber, int initialBalance, int amount, int expectedFinalBalance)
+        public async Task Should_withdraw_funds_given_valid_request(string accountNumber, int initialBalance,
+            int amount, int expectedFinalBalance)
         {
             _bankAccountRepository.AlreadyContains(accountNumber, initialBalance);
 

@@ -1,10 +1,5 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
 {
@@ -21,7 +16,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
 
         public Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
         {
-            if(!Contains(accountNumber))
+            if (!Contains(accountNumber))
             {
                 return Task.FromResult(NULL_ACCOUNT);
             }
@@ -37,7 +32,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
         {
             var accountNumber = bankAccount.AccountNumber;
 
-            if(Contains(accountNumber))
+            if (Contains(accountNumber))
             {
                 throw new RepositoryException(RepositoryMessages.RepositoryConstraintValidation);
             }
@@ -52,7 +47,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
         {
             var accountNumber = bankAccount.AccountNumber;
 
-            if(!Contains(accountNumber))
+            if (!Contains(accountNumber))
             {
                 throw new RepositoryException(RepositoryMessages.RepositoryCannotUpdateNonExistent);
             }

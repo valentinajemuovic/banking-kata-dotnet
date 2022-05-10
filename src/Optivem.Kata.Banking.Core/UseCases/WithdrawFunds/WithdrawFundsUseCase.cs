@@ -1,10 +1,5 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
 {
@@ -24,7 +19,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
 
             var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
 
-            if(bankAccount == null)
+            if (bankAccount == null)
             {
                 throw new ValidationException(ValidationMessages.AccountNumberNotExist);
             }

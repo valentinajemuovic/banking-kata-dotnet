@@ -1,15 +1,11 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Verification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-
 using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
 
 namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
@@ -36,8 +32,8 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
         {
             var accountNumber = "GB36BARC20038032622823";
             var bankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Build();
 
             _repository.Add(bankAccount);
 
@@ -53,14 +49,14 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var finalBalance = 30;
 
             var initialBankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(initialBalance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(initialBalance)
+                .Build();
 
             var expectedFinalBankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(finalBalance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(finalBalance)
+                .Build();
 
             _repository.Add(initialBankAccount);
 
@@ -79,14 +75,14 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var withdrawalAmount = 10;
 
             var initialBankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             var expectedFinalBankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             _repository.Add(initialBankAccount);
 
@@ -103,14 +99,14 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var withdrawalAmount = 10;
 
             var bankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             var expectedBankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             _repository.Add(bankAccount);
 
@@ -131,14 +127,14 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var withdrawalAmount = 10;
 
             var bankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             var expectedBankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             _repository.Add(bankAccount);
 
@@ -161,14 +157,14 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var balance2 = 60;
 
             var bankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance)
+                .Build();
 
             var bankAccount2 = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Balance(balance2)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Balance(balance2)
+                .Build();
 
             _repository.Add(bankAccount);
 
@@ -184,8 +180,8 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
             var accountNumber = "GB36BARC20038032622823";
 
             var bankAccount = BankAccount()
-                    .AccountNumber(accountNumber)
-                    .Build();
+                .AccountNumber(accountNumber)
+                .Build();
 
             Action action = () => _repository.Update(bankAccount);
 

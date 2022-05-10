@@ -1,9 +1,4 @@
 ﻿using Optivem.Kata.Banking.Core.UseCases.WithdrawFunds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
 {
@@ -47,7 +42,5 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
                 Amount = _amount,
             };
         }
-
-
     }
 }

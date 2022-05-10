@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Optivem.Kata.Banking.Test.Common.Data
 {
@@ -20,7 +16,7 @@ namespace Optivem.Kata.Banking.Test.Common.Data
 
         private static object[] GetEntry(int value)
         {
-            return new object[] { value };
+            return new object[] {value};
         }
     }
 }

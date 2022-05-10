@@ -1,10 +1,4 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
 
 namespace Optivem.Kata.Banking.Test.Common.Setup

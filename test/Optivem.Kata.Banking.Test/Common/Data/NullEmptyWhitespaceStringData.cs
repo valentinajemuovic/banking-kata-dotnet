@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Optivem.Kata.Banking.Test.Common.Data
 {
     internal class NullEmptyWhitespaceStringData : BaseData
     {
-        private static readonly IEnumerable<object[]> Data = new List<object[]> 
+        private static readonly IEnumerable<object[]> Data = new List<object[]>
         {
-            GetEntry(null), 
-            GetEntry(""), 
-            GetEntry("   ") 
+            GetEntry(null),
+            GetEntry(""),
+            GetEntry("   ")
         };
 
         public NullEmptyWhitespaceStringData() : base(Data)
@@ -22,7 +17,7 @@ namespace Optivem.Kata.Banking.Test.Common.Data
 
         private static object[] GetEntry(string? value)
         {
-            return new object[] { value };
+            return new object[] {value};
         }
     }
 }
