@@ -1,9 +1,4 @@
 ﻿using Optivem.Kata.Banking.Core.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
@@ -20,7 +15,6 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         public BankAccount(BankAccount other)
             : this(other.AccountNumber, other.FirstName, other.LastName, other.Balance)
         {
-
         }
 
         public AccountNumber AccountNumber { get; }

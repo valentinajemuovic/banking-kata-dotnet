@@ -1,37 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
 
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="StrykerOutput\**" />
-    <EmbeddedResource Remove="StrykerOutput\**" />
-    <None Remove="StrykerOutput\**" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="StrykerOutput\**"/>
+        <EmbeddedResource Remove="StrykerOutput\**"/>
+        <None Remove="StrykerOutput\**"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="6.6.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
-    <PackageReference Include="TngTech.ArchUnitNET" Version="0.10.1" />
-    <PackageReference Include="TngTech.ArchUnitNET.xUnit" Version="0.10.1" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="3.1.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="6.6.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0"/>
+        <PackageReference Include="TngTech.ArchUnitNET" Version="0.10.1"/>
+        <PackageReference Include="TngTech.ArchUnitNET.xUnit" Version="0.10.1"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.1.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj" />
-    <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Infrastructure.Fake\Optivem.Kata.Banking.Infrastructure.Fake.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj"/>
+        <ProjectReference Include="..\..\src\Optivem.Kata.Banking.Infrastructure.Fake\Optivem.Kata.Banking.Infrastructure.Fake.csproj"/>
+    </ItemGroup>
 
 </Project>

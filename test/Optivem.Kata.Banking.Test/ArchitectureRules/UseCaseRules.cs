@@ -29,7 +29,7 @@ public class UseCasesRules
             .Check();
 
     [Fact]
-    public void UseCaseClassesShouldImplementTheUseCaseInterface() =>
+    public void UseCaseClassesShouldImplementUseCaseInterface() =>
         Classes()
             .That()
             .HaveNameEndingWith("UseCase")

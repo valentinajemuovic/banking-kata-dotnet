@@ -5,6 +5,7 @@
 This Banking Kata illustates the application of TDD and Clean Architecture with a Use Case Driven Approach in .NET.
 
 The Use Cases are:
+
 - Open Account
 - Withdraw Funds
 - Deposit Funds (pending)

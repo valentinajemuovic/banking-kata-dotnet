@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
@@ -7,13 +9,7 @@ using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using Optivem.Kata.Banking.Test.Common.Data;
 using Optivem.Kata.Banking.Test.Common.Givens;
 using Optivem.Kata.Banking.Test.Common.Verification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-
 using static Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders.OpenAccountRequestBuilder;
 
 namespace Optivem.Kata.Banking.Test.UseCases
@@ -34,7 +30,8 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [Theory]
         [InlineData("John", "Smith", 0, "GB41OMQP68570038161775")]
         [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876")]
-        public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance, string generatedAccountNumber)
+        public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance,
+            string generatedAccountNumber)
         {
             _accountNumberGenerator.WillGenerate(generatedAccountNumber);
 

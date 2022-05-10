@@ -1,9 +1,4 @@
 ﻿using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
 {
@@ -56,7 +51,5 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
                 Balance = _balance,
             };
         }
-
-
     }
 }
