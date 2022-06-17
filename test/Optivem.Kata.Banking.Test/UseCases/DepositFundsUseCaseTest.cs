@@ -1,6 +1,9 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using FluentAssertions;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.DepositFunds;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
+using Optivem.Kata.Banking.Test.Common.Data;
 using Optivem.Kata.Banking.Test.Common.Setup;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
@@ -43,6 +46,18 @@ namespace Optivem.Kata.Banking.Test.UseCases
             await _useCase.HandleAsync(request);
 
             await _bankAccountRepository.ShouldContainAsync(accountNumber, expectedFinalBalance);
+        }
+
+        [Theory]
+        [ClassData(typeof(NullEmptyWhitespaceStringData))]
+        public async Task Should_throw_exception_given_empty_account_number(string accountNumber)
+        {
+            var request = DepositFundsRequest().WithAccountNumber(accountNumber).Build();
+
+            Func<Task> action = () => _useCase.HandleAsync(request);
+
+            await action.Should().ThrowAsync<ValidationException>()
+                .WithMessage(ValidationMessages.AccountNumberEmpty);
         }
     }
 }
