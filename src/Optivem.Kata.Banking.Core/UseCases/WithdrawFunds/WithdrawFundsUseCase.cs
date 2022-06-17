@@ -24,7 +24,6 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
                 throw new ValidationException(ValidationMessages.AccountNumberNotExist);
             }
 
-
             bankAccount.Withdraw(amount);
 
             _bankAccountRepository.Update(bankAccount);
