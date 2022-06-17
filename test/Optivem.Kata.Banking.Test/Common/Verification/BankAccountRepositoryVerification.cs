@@ -5,7 +5,7 @@ using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuild
 
 namespace Optivem.Kata.Banking.Test.Common.Verification
 {
-    public static class BankAccountRepositoryVerification
+    internal static class BankAccountRepositoryVerification
     {
         public static async Task ShouldNotContainAsync(this IBankAccountRepository repository, string accountNumber)
         {

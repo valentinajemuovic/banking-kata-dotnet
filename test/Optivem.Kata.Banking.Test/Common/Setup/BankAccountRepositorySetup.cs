@@ -3,7 +3,7 @@ using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuild
 
 namespace Optivem.Kata.Banking.Test.Common.Setup
 {
-    public static class BankAccountRepositorySetup
+    internal static class BankAccountRepositorySetup
     {
         public static void AlreadyContains(this IBankAccountRepository repository, string accountNumber, int balance)
         {
