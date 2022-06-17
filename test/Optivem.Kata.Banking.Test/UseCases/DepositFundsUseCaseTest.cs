@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
+using static Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders.DepositFundsRequestBuilder;
+
 namespace Optivem.Kata.Banking.Test.UseCases
 {
     public class DepositFundsUseCaseTest
@@ -33,9 +35,10 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             _bankAccountRepository.AlreadyContains(accountNumber, initialBalance);
 
-            var request = new DepositFundsRequest();
-            request.AccountNumber = accountNumber;
-            request.Amount = depositAmount;
+            var request = DepositFundsRequest()
+                .WithAccountNumber(accountNumber)
+                .WithAmount(depositAmount)
+                .Build();
 
             await _useCase.HandleAsync(request);
 
