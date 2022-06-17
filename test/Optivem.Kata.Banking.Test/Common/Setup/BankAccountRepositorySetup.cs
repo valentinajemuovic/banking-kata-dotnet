@@ -14,5 +14,17 @@ namespace Optivem.Kata.Banking.Test.Common.Setup
 
             repository.Add(bankAccount);
         }
+
+        public static void AlreadyContains(this IBankAccountRepository repository, string accountNumber, string firstName, string lastName, int balance)
+        {
+            var bankAccount = BankAccount()
+                .AccountNumber(accountNumber)
+                .FirstName(firstName)
+                .LastName(lastName)
+                .Balance(balance)
+                .Build();
+
+            repository.Add(bankAccount);
+        }
     }
 }

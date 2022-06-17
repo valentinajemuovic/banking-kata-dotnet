@@ -26,9 +26,13 @@ namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
 
         private ViewAccountResponse GetResponse(BankAccount bankAccount)
         {
+            var fullName = bankAccount.FirstName + " " + bankAccount.LastName;
+
             return new ViewAccountResponse
             {
                 AccountNumber = bankAccount.AccountNumber.Value,
+                FullName = fullName,
+                Balance = bankAccount.Balance.IntValue,
             };
         }
     }

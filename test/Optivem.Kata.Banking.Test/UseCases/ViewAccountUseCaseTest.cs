@@ -28,9 +28,12 @@ namespace Optivem.Kata.Banking.Test.UseCases
         public async Task Should_view_account_given_valid_request()
         {
             var accountNumber = "GB36BMFK75394735916876";
-            var balance = 100;
+            var firstName = "Kelly";
+            var lastName = "McDonald";
+            var balance = 400;
+            var fullName = "Kelly McDonald";
 
-            _bankAccountRepository.AlreadyContains(accountNumber, balance);
+            _bankAccountRepository.AlreadyContains(accountNumber, firstName, lastName, balance);
 
             var request = ViewAccountRequestBuilder.ViewAccount()
                 .AccountNumber(accountNumber)
@@ -39,19 +42,13 @@ namespace Optivem.Kata.Banking.Test.UseCases
             var expectedResponse = new ViewAccountResponse
             {
                 AccountNumber = accountNumber,
+                FullName = fullName,
+                Balance = balance,
             };
 
             var response = await _useCase.HandleAsync(request);
 
             response.Should().BeEquivalentTo(expectedResponse);
         }
-
-        /*
-         * 
-        expectedResponse.setAccountNumber("3223fsfds");
-        expectedResponse.setFullName(fullName);
-        expectedResponse.setBalance(initialBalance);
-         * 
-         */
     }
 }
