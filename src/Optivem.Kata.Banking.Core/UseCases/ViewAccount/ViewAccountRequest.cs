@@ -8,5 +8,6 @@ namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
 {
     public class ViewAccountRequest
     {
+        public string? AccountNumber { get; set; }
     }
 }

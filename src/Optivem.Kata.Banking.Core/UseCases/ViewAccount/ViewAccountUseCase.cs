@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,27 @@ namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
 {
     public class ViewAccountUseCase : IUseCase<ViewAccountRequest, ViewAccountResponse>
     {
-        public Task<ViewAccountResponse> HandleAsync(ViewAccountRequest request)
+        private readonly IBankAccountRepository _bankAccountRepository;
+
+        public ViewAccountUseCase(IBankAccountRepository bankAccountRepository)
         {
-            var response = new ViewAccountResponse();
-            return Task.FromResult(response);
+            _bankAccountRepository = bankAccountRepository;
+        }
+
+        public async Task<ViewAccountResponse> HandleAsync(ViewAccountRequest request)
+        {
+            var accountNumber = AccountNumber.From(request.AccountNumber);
+            var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
+
+            return GetResponse(bankAccount);
+        }
+
+        private ViewAccountResponse GetResponse(BankAccount bankAccount)
+        {
+            return new ViewAccountResponse
+            {
+                AccountNumber = bankAccount.AccountNumber.Value,
+            };
         }
     }
 }
