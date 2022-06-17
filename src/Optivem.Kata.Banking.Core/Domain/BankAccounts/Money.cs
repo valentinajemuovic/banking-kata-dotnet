@@ -20,6 +20,12 @@
             return From(result);
         }
 
+        public Money Add(Money money)
+        {
+            var result = IntValue + money.IntValue;
+            return From(result);
+        }
+
         public bool IsNegative()
         {
             return IntValue < 0;
@@ -34,5 +40,6 @@
         {
             return IntValue < other.IntValue;
         }
+
     }
 }

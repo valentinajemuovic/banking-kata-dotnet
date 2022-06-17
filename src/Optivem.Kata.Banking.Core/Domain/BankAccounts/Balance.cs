@@ -38,5 +38,11 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
             var result = MoneyValue.Subtract(amount.MoneyValue);
             return From(result);
         }
+
+        public Balance Add(TransactionAmount amount)
+        {
+            var result = MoneyValue.Add(amount.MoneyValue);
+            return From(result);
+        }
     }
 }

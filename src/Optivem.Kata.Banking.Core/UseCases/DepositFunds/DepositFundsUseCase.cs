@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,23 @@ namespace Optivem.Kata.Banking.Core.UseCases.DepositFunds
 {
     public class DepositFundsUseCase : IVoidUseCase<DepositFundsRequest>
     {
-        public Task HandleAsync(DepositFundsRequest request)
+        private readonly IBankAccountRepository _bankAccountRepository;
+
+        public DepositFundsUseCase(IBankAccountRepository bankAccountRepository)
         {
-            return Task.CompletedTask;
+            _bankAccountRepository = bankAccountRepository;
+        }
+
+        public async Task HandleAsync(DepositFundsRequest request)
+        {
+            var accountNumber = AccountNumber.From(request.AccountNumber);
+            var amount = TransactionAmount.From(request.Amount);
+
+            var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
+
+            bankAccount.Deposit(amount);
+
+            _bankAccountRepository.Update(bankAccount);
         }
     }
 }

@@ -29,5 +29,10 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
             Balance = Balance.Subtract(amount);
         }
+
+        public void Deposit(TransactionAmount amount)
+        {
+            Balance = Balance.Add(amount);
+        }
     }
 }
