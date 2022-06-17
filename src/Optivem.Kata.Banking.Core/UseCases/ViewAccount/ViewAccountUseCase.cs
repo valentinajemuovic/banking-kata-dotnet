@@ -1,4 +1,5 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
             var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
+
+            if (bankAccount == null)
+            {
+                throw new ValidationException(ValidationMessages.AccountNumberNotExist);
+            }
 
             return GetResponse(bankAccount);
         }

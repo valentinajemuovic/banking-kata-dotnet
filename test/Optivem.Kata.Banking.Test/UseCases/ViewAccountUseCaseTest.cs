@@ -66,5 +66,16 @@ namespace Optivem.Kata.Banking.Test.UseCases
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberEmpty);
         }
+
+        [Fact]
+        public async Task Should_throw_exception_given_non_existent_account_number()
+        {
+            var request = ViewAccount().Build();
+
+            Func<Task> action = () => _useCase.HandleAsync(request);
+
+            await action.Should().ThrowAsync<ValidationException>()
+                .WithMessage(ValidationMessages.AccountNumberNotExist);
+        }
     }
 }
