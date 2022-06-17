@@ -1,4 +1,5 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace Optivem.Kata.Banking.Core.UseCases.DepositFunds
             var amount = TransactionAmount.From(request.Amount);
 
             var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
+
+            if (bankAccount == null)
+            {
+                throw new ValidationException(ValidationMessages.AccountNumberNotExist);
+            }
 
             bankAccount.Deposit(amount);
 
