@@ -8,8 +8,8 @@ namespace Optivem.Kata.Banking.Test.Common.Setup
         public static void AlreadyContains(this IBankAccountRepository repository, string accountNumber, int balance)
         {
             var bankAccount = BankAccount()
-                .AccountNumber(accountNumber)
-                .Balance(balance)
+                .WithAccountNumber(accountNumber)
+                .WithBalance(balance)
                 .Build();
 
             repository.Add(bankAccount);
@@ -18,10 +18,10 @@ namespace Optivem.Kata.Banking.Test.Common.Setup
         public static void AlreadyContains(this IBankAccountRepository repository, string accountNumber, string firstName, string lastName, int balance)
         {
             var bankAccount = BankAccount()
-                .AccountNumber(accountNumber)
-                .FirstName(firstName)
-                .LastName(lastName)
-                .Balance(balance)
+                .WithAccountNumber(accountNumber)
+                .WithFirstName(firstName)
+                .WithLastName(lastName)
+                .WithBalance(balance)
                 .Build();
 
             repository.Add(bankAccount);

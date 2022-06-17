@@ -40,7 +40,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
             _bankAccountRepository.AlreadyContains(accountNumber, firstName, lastName, balance);
 
             var request = ViewAccount()
-                .AccountNumber(accountNumber)
+                .WithAccountNumber(accountNumber)
                 .Build();
 
             var expectedResponse = new ViewAccountResponse
@@ -59,7 +59,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_account_number(string accountNumber)
         {
-            var request = ViewAccount().AccountNumber(accountNumber).Build();
+            var request = ViewAccount().WithAccountNumber(accountNumber).Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);
 

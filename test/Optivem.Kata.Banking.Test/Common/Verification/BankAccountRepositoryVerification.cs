@@ -27,10 +27,10 @@ namespace Optivem.Kata.Banking.Test.Common.Verification
             string firstName, string lastName, int balance)
         {
             var expectedBankAccount = BankAccount()
-                .AccountNumber(accountNumber)
-                .FirstName(firstName)
-                .LastName(lastName)
-                .Balance(balance)
+                .WithAccountNumber(accountNumber)
+                .WithFirstName(firstName)
+                .WithLastName(lastName)
+                .WithBalance(balance)
                 .Build();
 
             return repository.ShouldContainAsync(expectedBankAccount);
@@ -39,8 +39,8 @@ namespace Optivem.Kata.Banking.Test.Common.Verification
         public static Task ShouldContainAsync(this IBankAccountRepository repository, string accountNumber, int balance)
         {
             var expectedBankAccount = BankAccount()
-                .AccountNumber(accountNumber)
-                .Balance(balance)
+                .WithAccountNumber(accountNumber)
+                .WithBalance(balance)
                 .Build();
 
             return repository.ShouldContainAsync(expectedBankAccount);

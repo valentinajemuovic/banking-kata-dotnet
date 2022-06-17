@@ -36,9 +36,9 @@ namespace Optivem.Kata.Banking.Test.UseCases
             _accountNumberGenerator.WillGenerate(generatedAccountNumber);
 
             var request = OpenAccount()
-                .FirstName(firstName)
-                .LastName(lastName)
-                .Balance(balance)
+                .WithFirstName(firstName)
+                .WithLastName(lastName)
+                .WithBalance(balance)
                 .Build();
 
             var expectedResponse = new OpenAccountResponse
@@ -57,7 +57,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_first_name(string firstName)
         {
-            var request = OpenAccount().FirstName(firstName).Build();
+            var request = OpenAccount().WithFirstName(firstName).Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);
 
@@ -69,7 +69,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_last_name(string lastName)
         {
-            var request = OpenAccount().LastName(lastName).Build();
+            var request = OpenAccount().WithLastName(lastName).Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);
 
@@ -81,7 +81,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [ClassData(typeof(NegativeIntData))]
         public async Task Should_throw_exception_given_negative_initial_balance(int balance)
         {
-            var request = OpenAccount().Balance(balance).Build();
+            var request = OpenAccount().WithBalance(balance).Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);
 

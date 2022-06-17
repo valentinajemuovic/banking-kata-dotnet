@@ -23,7 +23,7 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
             _accountNumber = DefaultAccountNumber;
         }
 
-        public ViewAccountRequestBuilder AccountNumber(string accountNumber)
+        public ViewAccountRequestBuilder WithAccountNumber(string accountNumber)
         {
             _accountNumber = accountNumber;
             return this;

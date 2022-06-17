@@ -24,19 +24,19 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders
             _balance = DefaultBalance;
         }
 
-        public OpenAccountRequestBuilder FirstName(string firstName)
+        public OpenAccountRequestBuilder WithFirstName(string firstName)
         {
             _firstName = firstName;
             return this;
         }
 
-        public OpenAccountRequestBuilder LastName(string lastName)
+        public OpenAccountRequestBuilder WithLastName(string lastName)
         {
             _lastName = lastName;
             return this;
         }
 
-        public OpenAccountRequestBuilder Balance(int balance)
+        public OpenAccountRequestBuilder WithBalance(int balance)
         {
             _balance = balance;
             return this;

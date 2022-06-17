@@ -33,8 +33,8 @@ namespace Optivem.Kata.Banking.Test.UseCases
             _bankAccountRepository.AlreadyContains(accountNumber, initialBalance);
 
             var request = WithdrawFundsRequest()
-                .AccountNumber(accountNumber)
-                .Amount(amount)
+                .WithAccountNumber(accountNumber)
+                .WithAmount(amount)
                 .Build();
 
             await _useCase.HandleAsync(request);
@@ -46,7 +46,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [ClassData(typeof(NullEmptyWhitespaceStringData))]
         public async Task Should_throw_exception_given_empty_account_number(string accountNumber)
         {
-            var request = WithdrawFundsRequest().AccountNumber(accountNumber).Build();
+            var request = WithdrawFundsRequest().WithAccountNumber(accountNumber).Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);
 
@@ -58,7 +58,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         [ClassData(typeof(NonPositiveIntData))]
         public async Task Should_throw_exception_given_non_positive_amount(int amount)
         {
-            var request = WithdrawFundsRequest().Amount(amount).Build();
+            var request = WithdrawFundsRequest().WithAmount(amount).Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);
 
@@ -87,8 +87,8 @@ namespace Optivem.Kata.Banking.Test.UseCases
             _bankAccountRepository.AlreadyContains(accountNumber, balance);
 
             var request = WithdrawFundsRequest()
-                .AccountNumber(accountNumber)
-                .Amount(amount)
+                .WithAccountNumber(accountNumber)
+                .WithAmount(amount)
                 .Build();
 
             Func<Task> action = () => _useCase.HandleAsync(request);

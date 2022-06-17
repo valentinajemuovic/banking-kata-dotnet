@@ -21,31 +21,31 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 
         public BankAccountBuilder()
         {
-            AccountNumber(DefaultAccountNumber);
-            FirstName(DefaultFirstName);
-            LastName(DefaultLastName);
-            Balance(DefaultBalance);
+            _accountNumber = DefaultAccountNumber;
+            _firstName = DefaultFirstName;
+            _lastName = DefaultLastName;
+            _balance = DefaultBalance;
         }
 
-        public BankAccountBuilder AccountNumber(string accountNumber)
+        public BankAccountBuilder WithAccountNumber(string accountNumber)
         {
             _accountNumber = accountNumber;
             return this;
         }
 
-        public BankAccountBuilder FirstName(string firstName)
+        public BankAccountBuilder WithFirstName(string firstName)
         {
             _firstName = firstName;
             return this;
         }
 
-        public BankAccountBuilder LastName(string lastName)
+        public BankAccountBuilder WithLastName(string lastName)
         {
             _lastName = lastName;
             return this;
         }
 
-        public BankAccountBuilder Balance(int balance)
+        public BankAccountBuilder WithBalance(int balance)
         {
             _balance = balance;
             return this;
@@ -53,9 +53,9 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 
         public BankAccount Build()
         {
-            var accountNumber = Core.Domain.BankAccounts.AccountNumber.From(_accountNumber);
+            var accountNumber = AccountNumber.From(_accountNumber);
             var accountHolderName = AccountHolderName.From(_firstName, _lastName);
-            var balance = Core.Domain.BankAccounts.Balance.From(_balance);
+            var balance = Balance.From(_balance);
             return new BankAccount(accountNumber, accountHolderName, balance);
         }
     }
