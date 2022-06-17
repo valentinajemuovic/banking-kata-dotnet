@@ -54,8 +54,9 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
         public BankAccount Build()
         {
             var accountNumber = Core.Domain.BankAccounts.AccountNumber.From(_accountNumber);
+            var accountHolderName = AccountHolderName.From(_firstName, _lastName);
             var balance = Core.Domain.BankAccounts.Balance.From(_balance);
-            return new BankAccount(accountNumber, _firstName, _lastName, balance);
+            return new BankAccount(accountNumber, accountHolderName, balance);
         }
     }
 }

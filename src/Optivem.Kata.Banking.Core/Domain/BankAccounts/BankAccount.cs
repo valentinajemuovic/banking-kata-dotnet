@@ -4,22 +4,20 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public class BankAccount
     {
-        public BankAccount(AccountNumber accountNumber, string firstName, string lastName, Balance balance)
+        public BankAccount(AccountNumber accountNumber, AccountHolderName accountHolderName, Balance balance)
         {
             AccountNumber = accountNumber;
-            FirstName = firstName;
-            LastName = lastName;
+            AccountHolderName = accountHolderName;
             Balance = balance;
         }
 
         public BankAccount(BankAccount other)
-            : this(other.AccountNumber, other.FirstName, other.LastName, other.Balance)
+            : this(other.AccountNumber, other.AccountHolderName, other.Balance)
         {
         }
 
         public AccountNumber AccountNumber { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
+        public AccountHolderName AccountHolderName { get; }
         public Balance Balance { get; private set; }
 
         public void Withdraw(TransactionAmount amount)

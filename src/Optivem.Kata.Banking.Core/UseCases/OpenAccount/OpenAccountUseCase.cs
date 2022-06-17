@@ -17,22 +17,12 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
 
         public Task<OpenAccountResponse> HandleAsync(OpenAccountRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.FirstName))
-            {
-                throw new ValidationException(ValidationMessages.FirstNameEmpty);
-            }
-
-            if (string.IsNullOrWhiteSpace(request.LastName))
-            {
-                throw new ValidationException(ValidationMessages.LastNameEmpty);
-            }
-
+            var accountHolderName = AccountHolderName.From(request.FirstName, request.LastName);
             var balance = Balance.From(request.Balance);
 
             var accountNumber = _accountNumberGenerator.Next();
 
-
-            var bankAccount = new BankAccount(accountNumber, request.FirstName, request.LastName, balance);
+            var bankAccount = new BankAccount(accountNumber, accountHolderName, balance);
             _bankAccountRepository.Add(bankAccount);
 
             var response = new OpenAccountResponse
