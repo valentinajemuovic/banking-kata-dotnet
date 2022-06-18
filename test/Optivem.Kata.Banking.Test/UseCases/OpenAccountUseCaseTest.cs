@@ -8,6 +8,7 @@ using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
 using Optivem.Kata.Banking.Infrastructure.Fake.Time;
 using Optivem.Kata.Banking.Test.Common.Data;
+using Optivem.Kata.Banking.Test.Common.Extensions;
 using Optivem.Kata.Banking.Test.Common.Givens;
 using Optivem.Kata.Banking.Test.Common.Setup;
 using Optivem.Kata.Banking.Test.Common.Verification;
@@ -54,7 +55,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
                 AccountNumber = generatedAccountNumber,
             };
 
-            var response = await _useCase.HandleAsync(request);
+            var response = await _useCase.Handle(request);
 
             response.Should().BeEquivalentTo(expectedResponse);
 
@@ -67,7 +68,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = OpenAccount().WithFirstName(firstName).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.FirstNameEmpty);
@@ -79,7 +80,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = OpenAccount().WithLastName(lastName).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.LastNameEmpty);
@@ -91,7 +92,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = OpenAccount().WithBalance(balance).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.BalanceNegative);

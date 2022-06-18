@@ -1,10 +1,11 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using MediatR;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Domain.Time;
 using Optivem.Kata.Banking.Core.Exceptions;
 
 namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
 {
-    public class OpenAccountUseCase : IUseCase<OpenAccountRequest, OpenAccountResponse>
+    public class OpenAccountUseCase : IRequestHandler<OpenAccountRequest, OpenAccountResponse>
     {
         private readonly IAccountNumberGenerator _accountNumberGenerator;
         private readonly IDateTimeService _dateTimeService;
@@ -19,7 +20,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
             _bankAccountRepository = bankAccountRepository;
         }
 
-        public Task<OpenAccountResponse> HandleAsync(OpenAccountRequest request)
+        public Task<OpenAccountResponse> Handle(OpenAccountRequest request, CancellationToken cancellationToken)
         {
             var accountHolderName = AccountHolderName.From(request.FirstName, request.LastName);
             var balance = Balance.From(request.Balance);

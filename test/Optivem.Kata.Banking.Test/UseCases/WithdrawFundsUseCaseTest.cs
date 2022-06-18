@@ -6,6 +6,7 @@ using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.WithdrawFunds;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Data;
+using Optivem.Kata.Banking.Test.Common.Extensions;
 using Optivem.Kata.Banking.Test.Common.Setup;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using Xunit;
@@ -37,7 +38,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
                 .WithAmount(amount)
                 .Build();
 
-            await _useCase.HandleAsync(request);
+            await _useCase.Handle(request);
 
             await _bankAccountRepository.ShouldContainAsync(accountNumber, expectedFinalBalance);
         }
@@ -48,7 +49,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = WithdrawFundsRequest().WithAccountNumber(accountNumber).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberEmpty);
@@ -60,7 +61,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = WithdrawFundsRequest().WithAmount(amount).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AmountNotPositive);
@@ -71,7 +72,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = WithdrawFundsRequest().Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberNotExist);
@@ -91,7 +92,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
                 .WithAmount(amount)
                 .Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.InsufficientFunds);

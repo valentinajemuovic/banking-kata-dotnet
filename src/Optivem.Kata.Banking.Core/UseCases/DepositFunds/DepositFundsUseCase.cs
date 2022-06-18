@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using MediatR;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Core.UseCases.DepositFunds
 {
-    public class DepositFundsUseCase : IVoidUseCase<DepositFundsRequest>
+    public class DepositFundsUseCase : IRequestHandler<DepositFundsRequest, VoidResponse>
     {
         private readonly IBankAccountRepository _bankAccountRepository;
 
@@ -17,7 +18,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.DepositFunds
             _bankAccountRepository = bankAccountRepository;
         }
 
-        public async Task HandleAsync(DepositFundsRequest request)
+        public async Task<VoidResponse> Handle(DepositFundsRequest request, CancellationToken cancellationToken)
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
             var amount = TransactionAmount.From(request.Amount);
@@ -32,6 +33,8 @@ namespace Optivem.Kata.Banking.Core.UseCases.DepositFunds
             bankAccount.Deposit(amount);
 
             _bankAccountRepository.Update(bankAccount);
+
+            return VoidResponse.Empty;
         }
     }
 }

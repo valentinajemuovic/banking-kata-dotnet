@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using MediatR;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
 {
-    public class ViewAccountUseCase : IUseCase<ViewAccountRequest, ViewAccountResponse>
+    public class ViewAccountUseCase : IRequestHandler<ViewAccountRequest, ViewAccountResponse>
     {
         private readonly IBankAccountRepository _bankAccountRepository;
 
@@ -17,7 +18,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
             _bankAccountRepository = bankAccountRepository;
         }
 
-        public async Task<ViewAccountResponse> HandleAsync(ViewAccountRequest request)
+        public async Task<ViewAccountResponse> Handle(ViewAccountRequest request, CancellationToken cancellationToken)
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
             var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);

@@ -34,6 +34,6 @@ public class UseCasesRules
             .That()
             .HaveNameEndingWith("UseCase")
             .Should()
-            .ImplementInterface("IUseCase|IVoidUseCase", true)
+            .ImplementInterface("IRequestHandler", true)
             .Check();
 }

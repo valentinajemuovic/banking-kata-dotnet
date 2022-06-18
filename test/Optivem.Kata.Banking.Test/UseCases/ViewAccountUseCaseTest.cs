@@ -5,6 +5,7 @@ using Optivem.Kata.Banking.Core.UseCases.ViewAccount;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders;
 using Optivem.Kata.Banking.Test.Common.Data;
+using Optivem.Kata.Banking.Test.Common.Extensions;
 using Optivem.Kata.Banking.Test.Common.Setup;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
                 Balance = balance,
             };
 
-            var response = await _useCase.HandleAsync(request);
+            var response = await _useCase.Handle(request);
 
             response.Should().BeEquivalentTo(expectedResponse);
         }
@@ -61,7 +62,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = ViewAccount().WithAccountNumber(accountNumber).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberEmpty);
@@ -72,7 +73,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = ViewAccount().Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberNotExist);

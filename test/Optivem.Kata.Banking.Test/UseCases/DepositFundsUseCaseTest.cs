@@ -4,6 +4,7 @@ using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.DepositFunds;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Data;
+using Optivem.Kata.Banking.Test.Common.Extensions;
 using Optivem.Kata.Banking.Test.Common.Setup;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using System;
@@ -43,7 +44,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
                 .WithAmount(depositAmount)
                 .Build();
 
-            await _useCase.HandleAsync(request);
+            await _useCase.Handle(request);
 
             await _bankAccountRepository.ShouldContainAsync(accountNumber, expectedFinalBalance);
         }
@@ -54,7 +55,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = DepositFundsRequest().WithAccountNumber(accountNumber).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberEmpty);
@@ -66,7 +67,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = DepositFundsRequest().WithAmount(amount).Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AmountNotPositive);
@@ -77,7 +78,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         {
             var request = DepositFundsRequest().Build();
 
-            Func<Task> action = () => _useCase.HandleAsync(request);
+            Func<Task> action = () => _useCase.Handle(request);
 
             await action.Should().ThrowAsync<ValidationException>()
                 .WithMessage(ValidationMessages.AccountNumberNotExist);

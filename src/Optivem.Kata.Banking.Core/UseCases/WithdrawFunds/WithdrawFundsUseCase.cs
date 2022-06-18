@@ -1,9 +1,10 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using MediatR;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Core.Exceptions;
 
 namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
 {
-    public class WithdrawFundsUseCase : IVoidUseCase<WithdrawFundsRequest>
+    public class WithdrawFundsUseCase : IRequestHandler<WithdrawFundsRequest, VoidResponse>
     {
         private readonly IBankAccountRepository _bankAccountRepository;
 
@@ -12,7 +13,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
             _bankAccountRepository = bankAccountRepository;
         }
 
-        public async Task HandleAsync(WithdrawFundsRequest request)
+        public async Task<VoidResponse> Handle(WithdrawFundsRequest request, CancellationToken cancellationToken)
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
             var amount = TransactionAmount.From(request.Amount);
@@ -27,6 +28,8 @@ namespace Optivem.Kata.Banking.Core.UseCases.WithdrawFunds
             bankAccount.Withdraw(amount);
 
             _bankAccountRepository.Update(bankAccount);
+
+            return VoidResponse.Empty;
         }
     }
 }
