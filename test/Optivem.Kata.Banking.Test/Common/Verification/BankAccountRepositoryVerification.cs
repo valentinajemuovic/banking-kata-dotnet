@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
-using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
+using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountTestBuilder;
 
 namespace Optivem.Kata.Banking.Test.Common.Verification
 {

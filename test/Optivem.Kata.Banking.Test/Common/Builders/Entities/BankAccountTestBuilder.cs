@@ -3,17 +3,11 @@ using System;
 
 namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 {
-    internal class BankAccountBuilder
+    internal class BankAccountTestBuilder
     {
-        private const string DefaultAccountNumber = "GB10BARC20040184197751";
-        private const string DefaultFirstName = "John";
-        private const string DefaultLastName = "Smith";
-        private static DateOnly DefaultOpeningDate = new DateOnly(2022, 10, 25);
-        private const int DefaultBalance = 100;
-
-        public static BankAccountBuilder BankAccount()
+        public static BankAccountTestBuilder BankAccount()
         {
-            return new BankAccountBuilder();
+            return new BankAccountTestBuilder();
         }
 
         private string _accountNumber;
@@ -22,40 +16,40 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
         private DateOnly _openingDate;
         private int _balance;
 
-        public BankAccountBuilder()
+        public BankAccountTestBuilder()
         {
-            _accountNumber = DefaultAccountNumber;
-            _firstName = DefaultFirstName;
-            _lastName = DefaultLastName;
-            _openingDate = DefaultOpeningDate;
-            _balance = DefaultBalance;
+            _accountNumber = BankAccountDefaults.DefaultAccountNumber;
+            _firstName = BankAccountDefaults.DefaultFirstName;
+            _lastName = BankAccountDefaults.DefaultLastName;
+            _openingDate = BankAccountDefaults.DefaultOpeningDate;
+            _balance = BankAccountDefaults.DefaultBalance;
         }
 
-        public BankAccountBuilder WithAccountNumber(string accountNumber)
+        public BankAccountTestBuilder WithAccountNumber(string accountNumber)
         {
             _accountNumber = accountNumber;
             return this;
         }
 
-        public BankAccountBuilder WithFirstName(string firstName)
+        public BankAccountTestBuilder WithFirstName(string firstName)
         {
             _firstName = firstName;
             return this;
         }
 
-        public BankAccountBuilder WithLastName(string lastName)
+        public BankAccountTestBuilder WithLastName(string lastName)
         {
             _lastName = lastName;
             return this;
         }
 
-        public BankAccountBuilder WithOpeningDate(DateOnly openingDate)
+        public BankAccountTestBuilder WithOpeningDate(DateOnly openingDate)
         {
             _openingDate = openingDate;
             return this;
         }
 
-        public BankAccountBuilder WithBalance(int balance)
+        public BankAccountTestBuilder WithBalance(int balance)
         {
             _balance = balance;
             return this;

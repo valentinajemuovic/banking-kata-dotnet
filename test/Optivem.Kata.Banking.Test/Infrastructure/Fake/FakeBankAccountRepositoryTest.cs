@@ -6,7 +6,7 @@ using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using Xunit;
-using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
+using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountTestBuilder;
 
 namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 {
