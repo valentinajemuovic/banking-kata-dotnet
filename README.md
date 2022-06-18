@@ -15,6 +15,13 @@ The Use Cases are:
 
 .NET 6
 
+Tool dotnet-ef needs to be installed:
+
+```
+dotnet tool install --global dotnet-ef
+```
+
+
 ## Instructions
 
 Run Build
