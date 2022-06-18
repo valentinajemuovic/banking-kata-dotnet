@@ -23,7 +23,7 @@ namespace Optivem.Kata.Banking.Web.Extensions
 
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("BankingDatabase"));
+                options.UseSqlServer(configuration.GetConnectionString("BankingDatabase"), b => b.MigrationsAssembly("Optivem.Kata.Banking.Infrastructure"));
             });
 
             services.AddMediatR(typeof(CoreModule));

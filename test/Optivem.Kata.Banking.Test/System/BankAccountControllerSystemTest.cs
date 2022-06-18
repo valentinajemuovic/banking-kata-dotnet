@@ -20,6 +20,9 @@ namespace Optivem.Kata.Banking.Test.System
             var application = new WebApplicationFactory<Program>()
                 .WithWebHostBuilder(builder =>
                 {
+                    // var configuration = builder.Ser
+
+                    // builder.ConfigureServices(services => services.Register(builder.Conf))
                     // TODO: VC: Configure
                 });
 
