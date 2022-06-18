@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NUlid" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj" />
   </ItemGroup>
 
