@@ -1,30 +1,26 @@
 ﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Infrastructure.Fake.Common;
 using Optivem.Kata.Banking.Infrastructure.Fake.Exceptions;
 
 namespace Optivem.Kata.Banking.Infrastructure.Fake.Generators
 {
-    public class FakeAccountNumberGenerator : IAccountNumberGenerator
+    public class FakeAccountNumberGenerator :IAccountNumberGenerator
     {
-        private readonly Queue<AccountNumber> _queue;
+        private readonly FakeGenerator<AccountNumber> _generator;
 
         public FakeAccountNumberGenerator()
         {
-            _queue = new Queue<AccountNumber>();
+            _generator = new FakeGenerator<AccountNumber>();
         }
 
         public AccountNumber Next()
         {
-            if (!_queue.Any())
-            {
-                throw new FakeException(FakeMessages.GeneratorDoesNotHaveNext);
-            }
-
-            return _queue.Dequeue();
+            return _generator.Next();
         }
 
-        public void Add(AccountNumber accountNumber)
+        public void Enqueue(AccountNumber accountNumber)
         {
-            _queue.Enqueue(accountNumber);
+            _generator.Enqueue(accountNumber);
         }
     }
 }

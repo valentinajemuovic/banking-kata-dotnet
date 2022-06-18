@@ -6,8 +6,10 @@ using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Core.UseCases.OpenAccount;
 using Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Fake.Generators;
+using Optivem.Kata.Banking.Infrastructure.Fake.Time;
 using Optivem.Kata.Banking.Test.Common.Data;
 using Optivem.Kata.Banking.Test.Common.Givens;
+using Optivem.Kata.Banking.Test.Common.Setup;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using Xunit;
 using static Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders.OpenAccountRequestBuilder;
@@ -17,23 +19,29 @@ namespace Optivem.Kata.Banking.Test.UseCases
     public class OpenAccountUseCaseTest
     {
         private readonly FakeAccountNumberGenerator _accountNumberGenerator;
+        private readonly FakeDateTimeService _dateTimeService;
         private readonly IBankAccountRepository _bankAccountRepository;
         private readonly OpenAccountUseCase _useCase;
 
         public OpenAccountUseCaseTest()
         {
             _accountNumberGenerator = new FakeAccountNumberGenerator();
+            _dateTimeService = new FakeDateTimeService();
             _bankAccountRepository = new FakeBankAccountRepository();
-            _useCase = new OpenAccountUseCase(_accountNumberGenerator, _bankAccountRepository);
+            _useCase = new OpenAccountUseCase(_accountNumberGenerator, _dateTimeService, _bankAccountRepository);
         }
 
         [Theory]
-        [InlineData("John", "Smith", 0, "GB41OMQP68570038161775")]
-        [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876")]
+        [InlineData("John", "Smith", 0, "GB41OMQP68570038161775", "2020-01-12")]
+        [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876", "2020-01-12")]
         public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance,
-            string generatedAccountNumber)
+            string generatedAccountNumber, string openingDateString)
         {
+            var openingDate = DateOnly.Parse(openingDateString); // TODO: VC: Make utility function
+            var openingDateTime = openingDate.ToDateTime(TimeOnly.MinValue);
+
             _accountNumberGenerator.WillGenerate(generatedAccountNumber);
+            _dateTimeService.WillReturn(openingDateTime);
 
             var request = OpenAccount()
                 .WithFirstName(firstName)
@@ -50,7 +58,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             response.Should().BeEquivalentTo(expectedResponse);
 
-            await _bankAccountRepository.ShouldContainAsync(generatedAccountNumber, firstName, lastName, balance);
+            await _bankAccountRepository.ShouldContainAsync(generatedAccountNumber, firstName, lastName, openingDate, balance);
         }
 
         [Theory]

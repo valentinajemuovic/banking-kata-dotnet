@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj"/>
+        <ProjectReference Include="..\Optivem.Kata.Banking.Core\Optivem.Kata.Banking.Core.csproj" />
     </ItemGroup>
 
 </Project>

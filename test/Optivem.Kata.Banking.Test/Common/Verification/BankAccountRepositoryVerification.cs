@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using static Optivem.Kata.Banking.Test.Common.Builders.Entities.BankAccountBuilder;
@@ -23,13 +24,18 @@ namespace Optivem.Kata.Banking.Test.Common.Verification
             retrievedBankAccount.Should().BeEquivalentTo(bankAccount);
         }
 
-        public static Task ShouldContainAsync(this IBankAccountRepository repository, string accountNumber,
-            string firstName, string lastName, int balance)
+        public static Task ShouldContainAsync(this IBankAccountRepository repository, 
+            string accountNumber,
+            string firstName, 
+            string lastName, 
+            DateOnly openingDate,
+            int balance)
         {
             var expectedBankAccount = BankAccount()
                 .WithAccountNumber(accountNumber)
                 .WithFirstName(firstName)
                 .WithLastName(lastName)
+                .WithOpeningDate(openingDate)
                 .WithBalance(balance)
                 .Build();
 
