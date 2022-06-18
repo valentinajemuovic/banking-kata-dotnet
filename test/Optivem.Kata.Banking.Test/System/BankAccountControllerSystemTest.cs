@@ -44,7 +44,7 @@ namespace Optivem.Kata.Banking.Test.System
 
         }
 
-        [Fact(Skip = "In progress")]
+        [Fact(Skip = "TODO: Pending fix on workflows - CI")]
         public async Task Should_open_bank_account_given_valid_request()
         {
             var url = "bank-accounts";
