@@ -35,3 +35,9 @@ Run Tests:
 ```
 dotnet test Optivem.Kata.Banking.sln
 ```
+
+## Migrations
+
+```
+dotnet ef migrations add InitialMigration --project .\src\Optivem.Kata.Banking.Web
+```

@@ -20,6 +20,9 @@ namespace Optivem.Kata.Banking.Test.System
             var application = new WebApplicationFactory<Program>()
                 .WithWebHostBuilder(builder =>
                 {
+                    // var configuration = builder.Ser
+
+                    // builder.ConfigureServices(services => services.Register(builder.Conf))
                     // TODO: VC: Configure
                 });
 
@@ -41,7 +44,7 @@ namespace Optivem.Kata.Banking.Test.System
 
         }
 
-        [Fact(Skip = "TODO: In progress")]
+        [Fact]
         public async Task Should_open_bank_account_given_valid_request()
         {
             var url = "bank-accounts";
