@@ -38,6 +38,14 @@ dotnet test Optivem.Kata.Banking.sln
 
 ## Migrations
 
+To add a migration:
+
 ```
-dotnet ef migrations add InitialMigration --project .\src\Optivem.Kata.Banking.Web
+dotnet ef migrations add NameOfSomeMigration --project .\src\Optivem.Kata.Banking.Infrastructure
+```
+
+To remove a migration:
+
+```
+dotnet ef migrations remove --project .\src\Optivem.Kata.Banking.Infrastructure
 ```
