@@ -30,6 +30,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Web", "src\Optivem.Kata.Banking.Web\Optivem.Kata.Banking.Web.csproj", "{60BF7524-33C9-4FF0-9A90-9FD89590C091}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Core.Test", "test\Optivem.Kata.Banking.Core.Test\Optivem.Kata.Banking.Core.Test.csproj", "{66EDC2F0-6A40-43A6-941C-01DBD72206FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Infrastructure.Test", "test\Optivem.Kata.Banking.Infrastructure.Test\Optivem.Kata.Banking.Infrastructure.Test.csproj", "{B675B8CF-6F84-4D92-B240-107AAA754D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Infrastructure.Fake.Test", "test\Optivem.Kata.Banking.Infrastructure.Fake.Test\Optivem.Kata.Banking.Infrastructure.Fake.Test.csproj", "{DC6F3255-629E-43A1-A6B5-84C122256F4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Web.Test", "test\Optivem.Kata.Banking.Web.Test\Optivem.Kata.Banking.Web.Test.csproj", "{F2503671-03C6-4A8F-B69C-DBB62490DAE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.System.Test", "test\Optivem.Kata.Banking.System.Test\Optivem.Kata.Banking.System.Test.csproj", "{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +66,26 @@ Global
 		{60BF7524-33C9-4FF0-9A90-9FD89590C091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60BF7524-33C9-4FF0-9A90-9FD89590C091}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60BF7524-33C9-4FF0-9A90-9FD89590C091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66EDC2F0-6A40-43A6-941C-01DBD72206FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EDC2F0-6A40-43A6-941C-01DBD72206FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EDC2F0-6A40-43A6-941C-01DBD72206FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EDC2F0-6A40-43A6-941C-01DBD72206FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B675B8CF-6F84-4D92-B240-107AAA754D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B675B8CF-6F84-4D92-B240-107AAA754D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B675B8CF-6F84-4D92-B240-107AAA754D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B675B8CF-6F84-4D92-B240-107AAA754D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6F3255-629E-43A1-A6B5-84C122256F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6F3255-629E-43A1-A6B5-84C122256F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6F3255-629E-43A1-A6B5-84C122256F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6F3255-629E-43A1-A6B5-84C122256F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2503671-03C6-4A8F-B69C-DBB62490DAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2503671-03C6-4A8F-B69C-DBB62490DAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2503671-03C6-4A8F-B69C-DBB62490DAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2503671-03C6-4A8F-B69C-DBB62490DAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +98,11 @@ Global
 		{BA3D1039-A55B-43AE-8FD1-A218D3099819} = {6F7B163D-5322-417B-BBF4-2F4D7B6CB90D}
 		{5ED71E33-2789-42BF-BA97-309E0BF23576} = {7A5CBAC9-F45B-408C-BC28-3ABBFB424E3E}
 		{60BF7524-33C9-4FF0-9A90-9FD89590C091} = {7A5CBAC9-F45B-408C-BC28-3ABBFB424E3E}
+		{66EDC2F0-6A40-43A6-941C-01DBD72206FE} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
+		{B675B8CF-6F84-4D92-B240-107AAA754D2E} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
+		{DC6F3255-629E-43A1-A6B5-84C122256F4D} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
+		{F2503671-03C6-4A8F-B69C-DBB62490DAE8} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
+		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E8BB1C9-ACCB-46AB-88F8-F715384B5B0E}
