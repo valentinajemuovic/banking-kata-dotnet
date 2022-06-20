@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using IdGen;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,18 @@ namespace Optivem.Kata.Banking.Infrastructure
 {
     public class AccountIdGenerator : IAccountIdGenerator
     {
+        private const int GeneratorId = 0; // TODO: VC: Move to configuration
+        private readonly IdGenerator _generator;
+
+        public AccountIdGenerator()
+        {
+            _generator = new IdGenerator(GeneratorId);
+        }
+
         public AccountId Next()
         {
-            throw new NotImplementedException();
+            var value = _generator.CreateId();
+            return AccountId.From(value);
         }
     }
 }
