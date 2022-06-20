@@ -24,6 +24,12 @@ dotnet tool install --global dotnet-ef
 
 ## Instructions
 
+Update Database:
+
+```
+dotnet ef database update --project .\src\Optivem.Kata.Banking.Infrastructure
+```
+
 Run Build
 
 ```
@@ -38,12 +44,7 @@ dotnet test Optivem.Kata.Banking.sln
 
 ## Migrations
 
-To update the database:
-
-```
-dotnet ef database update --project .\src\Optivem.Kata.Banking.Infrastructure
-```
-
+The following instructions are only relevant to contributors who are changing the DB schema.
 
 To add a migration:
 

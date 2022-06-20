@@ -12,8 +12,8 @@ using Optivem.Kata.Banking.Infrastructure.Persistence;
 namespace Optivem.Kata.Banking.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220618173926_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220620100223_AddedBankAccounts")]
+    partial class AddedBankAccounts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Migrations
             modelBuilder.Entity("Optivem.Kata.Banking.Infrastructure.Persistence.BankAccountRecord", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("AccountNumber")
                         .IsRequired()

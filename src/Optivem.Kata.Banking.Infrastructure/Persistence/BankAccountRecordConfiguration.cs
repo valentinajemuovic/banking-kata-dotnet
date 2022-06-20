@@ -13,7 +13,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Persistence
         public void Configure(EntityTypeBuilder<BankAccountRecord> builder)
         {
             builder.Property(e => e.Id)
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedNever();
 
             builder.Property(e => e.AccountNumber)
                 .IsRequired();

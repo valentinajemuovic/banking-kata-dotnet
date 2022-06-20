@@ -25,10 +25,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Migrations
             modelBuilder.Entity("Optivem.Kata.Banking.Infrastructure.Persistence.BankAccountRecord", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("AccountNumber")
                         .IsRequired()

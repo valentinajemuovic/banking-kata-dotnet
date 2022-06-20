@@ -39,7 +39,7 @@ namespace Optivem.Kata.Banking.Infrastructure
         {
             return new BankAccountRecord
             {
-                Id = 0,
+                Id = bankAccount.AccountId.Value,
                 AccountNumber = bankAccount.AccountNumber.Value,
                 FirstName = bankAccount.AccountHolderName.FirstName,
                 LastName = bankAccount.AccountHolderName.LastName,
