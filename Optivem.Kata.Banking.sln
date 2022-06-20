@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Core",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Infrastructure.Fake", "src\Optivem.Kata.Banking.Infrastructure.Fake\Optivem.Kata.Banking.Infrastructure.Fake.csproj", "{330D6697-6C13-4E9C-AB5D-EFE30CC6FFE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Test", "test\Optivem.Kata.Banking.Test\Optivem.Kata.Banking.Test.csproj", "{EC8ED7B7-452E-471B-B26A-A72638B2657E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{6F7B163D-5322-417B-BBF4-2F4D7B6CB90D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{BA3D1039-A55B-43AE-8FD1-A218D3099819}"
@@ -30,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Web", "src\Optivem.Kata.Banking.Web\Optivem.Kata.Banking.Web.csproj", "{60BF7524-33C9-4FF0-9A90-9FD89590C091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Core.Test", "test\Optivem.Kata.Banking.Core.Test\Optivem.Kata.Banking.Core.Test.csproj", "{66EDC2F0-6A40-43A6-941C-01DBD72206FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Core.Test", "test\Optivem.Kata.Banking.Core.Test\Optivem.Kata.Banking.Core.Test.csproj", "{66EDC2F0-6A40-43A6-941C-01DBD72206FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Infrastructure.Test", "test\Optivem.Kata.Banking.Infrastructure.Test\Optivem.Kata.Banking.Infrastructure.Test.csproj", "{B675B8CF-6F84-4D92-B240-107AAA754D2E}"
 EndProject
@@ -39,6 +37,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Web.Test", "test\Optivem.Kata.Banking.Web.Test\Optivem.Kata.Banking.Web.Test.csproj", "{F2503671-03C6-4A8F-B69C-DBB62490DAE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.System.Test", "test\Optivem.Kata.Banking.System.Test\Optivem.Kata.Banking.System.Test.csproj", "{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Test.Common", "test\Optivem.Kata.Banking.Test.Common\Optivem.Kata.Banking.Test.Common.csproj", "{CA2E7D97-F4E3-4DE9-9B90-FBB9D2A48AB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{7E37993D-D5D8-4872-8717-9A67455B8F58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.CompositionRoot", "src\Optivem.Kata.Banking.CompositionRoot\Optivem.Kata.Banking.CompositionRoot.csproj", "{7898FF76-926B-4083-97BD-5180F10FE245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +58,6 @@ Global
 		{330D6697-6C13-4E9C-AB5D-EFE30CC6FFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{330D6697-6C13-4E9C-AB5D-EFE30CC6FFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{330D6697-6C13-4E9C-AB5D-EFE30CC6FFE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC8ED7B7-452E-471B-B26A-A72638B2657E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC8ED7B7-452E-471B-B26A-A72638B2657E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC8ED7B7-452E-471B-B26A-A72638B2657E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC8ED7B7-452E-471B-B26A-A72638B2657E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5ED71E33-2789-42BF-BA97-309E0BF23576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ED71E33-2789-42BF-BA97-309E0BF23576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED71E33-2789-42BF-BA97-309E0BF23576}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -86,6 +86,14 @@ Global
 		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2E7D97-F4E3-4DE9-9B90-FBB9D2A48AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2E7D97-F4E3-4DE9-9B90-FBB9D2A48AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2E7D97-F4E3-4DE9-9B90-FBB9D2A48AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2E7D97-F4E3-4DE9-9B90-FBB9D2A48AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7898FF76-926B-4083-97BD-5180F10FE245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7898FF76-926B-4083-97BD-5180F10FE245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7898FF76-926B-4083-97BD-5180F10FE245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7898FF76-926B-4083-97BD-5180F10FE245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,7 +101,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{40FCD7BC-B97B-419E-AE09-73320562F9E9} = {7A5CBAC9-F45B-408C-BC28-3ABBFB424E3E}
 		{330D6697-6C13-4E9C-AB5D-EFE30CC6FFE3} = {7A5CBAC9-F45B-408C-BC28-3ABBFB424E3E}
-		{EC8ED7B7-452E-471B-B26A-A72638B2657E} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
 		{6F7B163D-5322-417B-BBF4-2F4D7B6CB90D} = {AE08FCE5-B7A9-4C14-B4CD-2556AEA39C61}
 		{BA3D1039-A55B-43AE-8FD1-A218D3099819} = {6F7B163D-5322-417B-BBF4-2F4D7B6CB90D}
 		{5ED71E33-2789-42BF-BA97-309E0BF23576} = {7A5CBAC9-F45B-408C-BC28-3ABBFB424E3E}
@@ -103,6 +110,9 @@ Global
 		{DC6F3255-629E-43A1-A6B5-84C122256F4D} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
 		{F2503671-03C6-4A8F-B69C-DBB62490DAE8} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
 		{C2899ED9-9A4B-4DCD-BB03-F385F3EBF12C} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
+		{CA2E7D97-F4E3-4DE9-9B90-FBB9D2A48AB2} = {7E37993D-D5D8-4872-8717-9A67455B8F58}
+		{7E37993D-D5D8-4872-8717-9A67455B8F58} = {F6EA8904-F833-4E55-B3E6-FACDE5CA3068}
+		{7898FF76-926B-4083-97BD-5180F10FE245} = {7A5CBAC9-F45B-408C-BC28-3ABBFB424E3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E8BB1C9-ACCB-46AB-88F8-F715384B5B0E}

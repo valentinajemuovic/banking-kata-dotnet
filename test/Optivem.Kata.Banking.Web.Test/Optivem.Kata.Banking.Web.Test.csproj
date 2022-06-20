@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Optivem.Kata.Banking.Test.Common\Optivem.Kata.Banking.Test.Common.csproj" />
+  </ItemGroup>
+
 </Project>
