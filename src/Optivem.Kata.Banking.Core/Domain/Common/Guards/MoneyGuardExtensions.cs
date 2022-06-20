@@ -10,12 +10,24 @@ namespace Optivem.Kata.Banking.Core.Domain.Common.Guards
 {
     public static class MoneyGuardExtensions
     {
-        public static void GuardAgainstNegative(this Money value, string message)
+        public static Money GuardAgainstNegative(this Money value, string message)
         {
             if (value.IsNegative())
             {
-                throw new ValidationException(ValidationMessages.BalanceNegative);
+                throw new ValidationException(message);
             }
+
+            return value;
+        }
+
+        public static Money GuardAgainstNonPositive(this Money value, string message)
+        {
+            if (value.IsZeroOrNegative())
+            {
+                throw new ValidationException(message);
+            }
+
+            return value;
         }
     }
 }

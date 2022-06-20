@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Exceptions;
+﻿using Optivem.Kata.Banking.Core.Domain.Common.Guards;
+using Optivem.Kata.Banking.Core.Exceptions;
 
 namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
@@ -11,12 +12,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         private AccountNumber(string? value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new ValidationException(ValidationMessages.AccountNumberEmpty);
-            }
-
-            Value = value;
+            Value = value.GuardAgainstNullOrWhiteSpace(ValidationMessages.AccountNumberEmpty);
         }
 
         public string Value { get; }

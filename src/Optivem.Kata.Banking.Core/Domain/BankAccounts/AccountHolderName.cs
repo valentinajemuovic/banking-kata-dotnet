@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Exceptions;
+﻿using Optivem.Kata.Banking.Core.Domain.Common.Guards;
+using Optivem.Kata.Banking.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,8 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         private AccountHolderName(string? firstName, string? lastName)
         {
-            if (string.IsNullOrWhiteSpace(firstName))
-            {
-                throw new ValidationException(ValidationMessages.FirstNameEmpty);
-            }
-
-            if (string.IsNullOrWhiteSpace(lastName))
-            {
-                throw new ValidationException(ValidationMessages.LastNameEmpty);
-            }
-
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = firstName.GuardAgainstNullOrWhiteSpace(ValidationMessages.FirstNameEmpty);
+            LastName = lastName.GuardAgainstNullOrWhiteSpace(ValidationMessages.LastNameEmpty);
         }
 
         public string FirstName { get; }

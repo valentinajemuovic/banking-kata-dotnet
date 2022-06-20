@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Exceptions;
+﻿using Optivem.Kata.Banking.Core.Domain.Common.Guards;
+using Optivem.Kata.Banking.Core.Exceptions;
 
 namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
@@ -16,12 +17,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         private TransactionAmount(Money value)
         {
-            if (value.IsZeroOrNegative())
-            {
-                throw new ValidationException(ValidationMessages.AmountNotPositive);
-            }
-
-            MoneyValue = value;
+            MoneyValue = value.GuardAgainstNonPositive(ValidationMessages.AmountNotPositive);
         }
 
         public Money MoneyValue { get; }

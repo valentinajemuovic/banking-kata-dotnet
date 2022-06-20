@@ -17,9 +17,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         private Balance(Money value)
         {
-            value.GuardAgainstNegative(ValidationMessages.BalanceNegative);
-
-            MoneyValue = value;
+            MoneyValue = value.GuardAgainstNegative(ValidationMessages.BalanceNegative);
         }
 
         public Money MoneyValue { get; }
