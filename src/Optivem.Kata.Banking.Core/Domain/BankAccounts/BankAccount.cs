@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Exceptions;
+﻿using Optivem.Kata.Banking.Core.Domain.Common.Guards;
+using Optivem.Kata.Banking.Core.Exceptions;
 
 namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
@@ -6,24 +7,11 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
     {
         public BankAccount(AccountId accountId, AccountNumber accountNumber, AccountHolderName accountHolderName, DateOnly openingDate, Balance balance)
         {
-            GuardAgainstEmpty(accountId, ValidationMessages.AccountIdEmpty);
-            GuardAgainstEmpty(accountNumber, ValidationMessages.AccountNumberEmpty);
-            GuardAgainstEmpty(accountHolderName, ValidationMessages.AccountHolderNameEmpty);
-            GuardAgainstEmpty(openingDate, ValidationMessages.OpeningDateEmpty);
-
-            AccountId = accountId;
-            AccountNumber = accountNumber;
-            AccountHolderName = accountHolderName;
-            OpeningDate = openingDate;
+            AccountId = accountId.GuardAgainstEmpty(ValidationMessages.AccountIdEmpty);
+            AccountNumber = accountNumber.GuardAgainstEmpty(ValidationMessages.AccountNumberEmpty);
+            AccountHolderName = accountHolderName.GuardAgainstEmpty(ValidationMessages.AccountHolderNameEmpty);
+            OpeningDate = openingDate.GuardAgainstEmpty(ValidationMessages.OpeningDateEmpty);
             Balance = balance;
-        }
-
-        private static void GuardAgainstEmpty<T>(T value, string message) where T : struct
-        {
-            if(value.Equals(default(T)))
-            {
-                throw new ValidationException(message);
-            }
         }
 
         public BankAccount(BankAccount other)
