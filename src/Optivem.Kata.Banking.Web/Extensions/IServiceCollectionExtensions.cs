@@ -10,7 +10,7 @@ namespace Optivem.Kata.Banking.Web.Extensions
 {
     public static class IServiceCollectionExtensions
     {
-        public static void Register(this IServiceCollection services, ConfigurationManager configuration)
+        public static void Register(this IServiceCollection services, IConfiguration configuration)
         {
             // Add services to the container.
 
