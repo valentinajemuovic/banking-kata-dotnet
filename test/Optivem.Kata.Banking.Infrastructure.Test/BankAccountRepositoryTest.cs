@@ -38,7 +38,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
             bankAccount.Should().BeNull();
         }
 
-        [Fact]
+        [Fact(Skip = "TODO - In progress")]
         public async Task Should_retrieve_added_bank_account()
         {
             var bankAccount = CreateSomeBankAccount();

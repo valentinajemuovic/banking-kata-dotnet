@@ -9,5 +9,6 @@
         public const string AmountNotPositive = "Amount is not positive";
         public const string AccountNumberNotExist = "Account number does not exist";
         public const string InsufficientFunds = "Insufficient funds";
+        public const string AccountIdEmpty = "Account ID is empty";
     }
 }

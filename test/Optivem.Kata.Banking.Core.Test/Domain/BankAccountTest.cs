@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Core.Exceptions;
 using Optivem.Kata.Banking.Test.Common.Builders.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,18 +21,33 @@ namespace Optivem.Kata.Banking.Test.Domain
             bankAccount.Should().NotBeNull();
         }
 
+        [Fact]
+        public void Should_throw_exception_given_empty_account_id()
+        {
+            Action action = () => GetDefaultBuilder()
+                .WithAccountId(default(AccountId))
+                .Build();
+
+            action.Should().Throw<ValidationException>()
+                .WithMessage(ValidationMessages.AccountIdEmpty);
+        }
+
         private BankAccountBuilder GetDefaultBuilder()
         {
-            AccountNumber accountNumber = AccountNumber.From(BankAccountDefaults.DefaultAccountNumber);
-            AccountHolderName accountHolderName = AccountHolderName.From(BankAccountDefaults.DefaultFirstName, BankAccountDefaults.DefaultLastName);
-            DateOnly openingDate = BankAccountDefaults.DefaultOpeningDate;
-            Balance balance = Balance.From(BankAccountDefaults.DefaultBalance);
+            var accountId = AccountId.From(BankAccountDefaults.DefaultAccountId);
+            var accountNumber = AccountNumber.From(BankAccountDefaults.DefaultAccountNumber);
+            var accountHolderName = AccountHolderName.From(BankAccountDefaults.DefaultFirstName, BankAccountDefaults.DefaultLastName);
+            var openingDate = BankAccountDefaults.DefaultOpeningDate;
+            var balance = Balance.From(BankAccountDefaults.DefaultBalance);
 
             return BankAccountBuilder.BankAccount()
+                .WithAccountId(accountId)
                 .WithAccountNumber(accountNumber)
                 .WithAccountHolderName(accountHolderName)
                 .WithOpeningDate(openingDate)
                 .WithBalance(balance);
         }
+
+
     }
 }

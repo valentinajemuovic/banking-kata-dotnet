@@ -6,11 +6,21 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
     {
         public BankAccount(AccountId accountId, AccountNumber accountNumber, AccountHolderName accountHolderName, DateOnly openingDate, Balance balance)
         {
+            GuardAgainstEmpty(accountId, ValidationMessages.AccountIdEmpty);
+
             AccountId = accountId;
             AccountNumber = accountNumber;
             AccountHolderName = accountHolderName;
             OpeningDate = openingDate;
             Balance = balance;
+        }
+
+        private static void GuardAgainstEmpty<T>(T value, string message) where T : struct
+        {
+            if(value.Equals(default(T)))
+            {
+                throw new ValidationException(message);
+            }
         }
 
         public BankAccount(BankAccount other)
