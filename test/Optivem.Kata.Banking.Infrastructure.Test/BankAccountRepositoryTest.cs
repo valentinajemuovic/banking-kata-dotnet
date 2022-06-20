@@ -38,7 +38,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
             bankAccount.Should().BeNull();
         }
 
-        [Fact(Skip = "TODO - In progress")]
+        [Fact]
         public async Task Should_retrieve_added_bank_account()
         {
             var bankAccount = CreateSomeBankAccount();
@@ -59,6 +59,9 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
             return BankAccountBuilder.BankAccount()
                 .WithAccountId(accountId)
                 .WithAccountNumber(accountNumber)
+                .WithAccountHolderName(AccountHolderName.From(BankAccountDefaults.DefaultFirstName, BankAccountDefaults.DefaultLastName))
+                .WithOpeningDate(BankAccountDefaults.DefaultOpeningDate)
+                .WithBalance(Balance.From(BankAccountDefaults.DefaultBalance))
                 .Build();
         }
 
