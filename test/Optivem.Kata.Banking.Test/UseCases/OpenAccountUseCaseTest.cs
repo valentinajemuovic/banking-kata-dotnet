@@ -33,10 +33,10 @@ namespace Optivem.Kata.Banking.Test.UseCases
         }
 
         [Theory]
-        [InlineData("John", "Smith", 0, "GB41OMQP68570038161775", "2020-01-12")]
-        [InlineData("Mary", "McDonald", 50, "GB36BMFK75394735916876", "2020-01-12")]
+        [InlineData("John", "Smith", 0, 325423532, "GB41OMQP68570038161775", "2020-01-12")]
+        [InlineData("Mary", "McDonald", 50, 232342, "GB36BMFK75394735916876", "2020-01-12")]
         public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance,
-            string generatedAccountNumber, string openingDateString)
+            long generatedAccountId, string generatedAccountNumber, string openingDateString)
         {
             var openingDate = DateOnly.Parse(openingDateString); // TODO: VC: Make utility function
             var openingDateTime = openingDate.ToDateTime(TimeOnly.MinValue);
@@ -59,7 +59,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
             response.Should().BeEquivalentTo(expectedResponse);
 
-            await _bankAccountRepository.ShouldContainAsync(generatedAccountNumber, firstName, lastName, openingDate, balance);
+            await _bankAccountRepository.ShouldContainAsync(generatedAccountId, generatedAccountNumber, firstName, lastName, openingDate, balance);
         }
 
         [Theory]
