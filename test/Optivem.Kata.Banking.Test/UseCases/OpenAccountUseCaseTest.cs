@@ -19,6 +19,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
 {
     public class OpenAccountUseCaseTest
     {
+        private readonly FakeAccountIdGenerator _accountIdGenerator;
         private readonly FakeAccountNumberGenerator _accountNumberGenerator;
         private readonly FakeDateTimeService _dateTimeService;
         private readonly IBankAccountRepository _bankAccountRepository;
@@ -26,10 +27,11 @@ namespace Optivem.Kata.Banking.Test.UseCases
 
         public OpenAccountUseCaseTest()
         {
+            _accountIdGenerator = new FakeAccountIdGenerator();
             _accountNumberGenerator = new FakeAccountNumberGenerator();
             _dateTimeService = new FakeDateTimeService();
             _bankAccountRepository = new FakeBankAccountRepository();
-            _useCase = new OpenAccountUseCase(_accountNumberGenerator, _dateTimeService, _bankAccountRepository);
+            _useCase = new OpenAccountUseCase(_accountIdGenerator, _accountNumberGenerator, _dateTimeService, _bankAccountRepository);
         }
 
         [Theory]
@@ -41,6 +43,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
             var openingDate = DateOnly.Parse(openingDateString); // TODO: VC: Make utility function
             var openingDateTime = openingDate.ToDateTime(TimeOnly.MinValue);
 
+            _accountIdGenerator.WillGenerate(generatedAccountId);
             _accountNumberGenerator.WillGenerate(generatedAccountNumber);
             _dateTimeService.WillReturn(openingDateTime);
 

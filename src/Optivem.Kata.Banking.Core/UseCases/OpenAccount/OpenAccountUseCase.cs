@@ -7,14 +7,17 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
 {
     public class OpenAccountUseCase : IRequestHandler<OpenAccountRequest, OpenAccountResponse>
     {
+        private readonly IAccountIdGenerator _accountIdGenerator;
         private readonly IAccountNumberGenerator _accountNumberGenerator;
         private readonly IDateTimeService _dateTimeService;
         private readonly IBankAccountRepository _bankAccountRepository;
 
-        public OpenAccountUseCase(IAccountNumberGenerator accountNumberGenerator,
+        public OpenAccountUseCase(IAccountIdGenerator accountIdGenerator,
+            IAccountNumberGenerator accountNumberGenerator,
             IDateTimeService dateTimeService,
             IBankAccountRepository bankAccountRepository)
         {
+            _accountIdGenerator = accountIdGenerator;
             _accountNumberGenerator = accountNumberGenerator;
             _dateTimeService = dateTimeService;
             _bankAccountRepository = bankAccountRepository;
@@ -25,11 +28,12 @@ namespace Optivem.Kata.Banking.Core.UseCases.OpenAccount
             var accountHolderName = AccountHolderName.From(request.FirstName, request.LastName);
             var balance = Balance.From(request.Balance);
 
+            var accountId = _accountIdGenerator.Next();
             var accountNumber = _accountNumberGenerator.Next();
             var openingDateTime = _dateTimeService.Now();
             var openingDate = DateOnly.FromDateTime(openingDateTime);
 
-            var bankAccount = new BankAccount(accountNumber, accountHolderName, openingDate, balance);
+            var bankAccount = new BankAccount(accountId, accountNumber, accountHolderName, openingDate, balance);
             _bankAccountRepository.Add(bankAccount);
 
             var response = new OpenAccountResponse

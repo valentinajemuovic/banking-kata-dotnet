@@ -4,7 +4,7 @@ using Optivem.Kata.Banking.Infrastructure.Fake.Exceptions;
 
 namespace Optivem.Kata.Banking.Infrastructure.Fake.Generators
 {
-    public class FakeAccountNumberGenerator :IAccountNumberGenerator
+    public class FakeAccountNumberGenerator : IAccountNumberGenerator
     {
         private readonly FakeGenerator<AccountNumber> _generator;
 

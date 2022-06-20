@@ -65,10 +65,11 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 
         public BankAccount Build()
         {
+            var accountId = AccountId.From(_accountId);
             var accountNumber = AccountNumber.From(_accountNumber);
             var accountHolderName = AccountHolderName.From(_firstName, _lastName);
             var balance = Balance.From(_balance);
-            return new BankAccount(accountNumber, accountHolderName, _openingDate, balance);
+            return new BankAccount(accountId, accountNumber, accountHolderName, _openingDate, balance);
         }
     }
 }

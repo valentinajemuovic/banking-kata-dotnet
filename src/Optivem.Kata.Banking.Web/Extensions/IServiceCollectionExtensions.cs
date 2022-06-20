@@ -17,6 +17,7 @@ namespace Optivem.Kata.Banking.Web.Extensions
             services.AddControllers();
 
             // TODO: VC: Move to Startup to enable re-use by tests
+            services.AddScoped<IAccountIdGenerator, AccountIdGenerator>();
             services.AddScoped<IAccountNumberGenerator, AccountNumberGenerator>();
             services.AddScoped<IDateTimeService, DateTimeService>();
             services.AddScoped<IBankAccountRepository, BankAccountRepository>();

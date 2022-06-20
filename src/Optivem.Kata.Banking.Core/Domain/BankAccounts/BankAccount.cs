@@ -4,8 +4,9 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 {
     public class BankAccount
     {
-        public BankAccount(AccountNumber accountNumber, AccountHolderName accountHolderName, DateOnly openingDate, Balance balance)
+        public BankAccount(AccountId accountId, AccountNumber accountNumber, AccountHolderName accountHolderName, DateOnly openingDate, Balance balance)
         {
+            AccountId = accountId;
             AccountNumber = accountNumber;
             AccountHolderName = accountHolderName;
             OpeningDate = openingDate;
@@ -13,10 +14,11 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         }
 
         public BankAccount(BankAccount other)
-            : this(other.AccountNumber, other.AccountHolderName, other.OpeningDate, other.Balance)
+            : this(other.AccountId, other.AccountNumber, other.AccountHolderName, other.OpeningDate, other.Balance)
         {
         }
 
+        public AccountId AccountId { get; }
         public AccountNumber AccountNumber { get; }
         public AccountHolderName AccountHolderName { get; }
         public DateOnly OpeningDate { get; }

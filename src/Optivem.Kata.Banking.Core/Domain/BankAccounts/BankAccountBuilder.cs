@@ -13,10 +13,17 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
             return new BankAccountBuilder();
         }
 
+        private AccountId _accountId;
         private AccountNumber _accountNumber;
         private AccountHolderName _accountHolderName;
         private DateOnly _openingDate;
         private Balance _balance;
+
+        public BankAccountBuilder WithAccountId(AccountId accountId)
+        {
+            _accountId = accountId;
+            return this;
+        }
 
         public BankAccountBuilder WithAccountNumber(AccountNumber accountNumber)
         {
@@ -44,7 +51,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         public BankAccount Build()
         {
-            return new BankAccount(_accountNumber, _accountHolderName, _openingDate, _balance);
+            return new BankAccount(_accountId, _accountNumber, _accountHolderName, _openingDate, _balance);
         }
     }
 }
