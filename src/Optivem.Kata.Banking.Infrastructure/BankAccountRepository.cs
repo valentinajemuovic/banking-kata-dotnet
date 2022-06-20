@@ -1,4 +1,5 @@
-﻿using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+﻿using Microsoft.EntityFrameworkCore;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,22 @@ namespace Optivem.Kata.Banking.Infrastructure
         public void Add(BankAccount bankAccount)
         {
             var record = Create(bankAccount);
-            _dbContext.Add(record);
+            _dbContext.BankAccounts.Add(record);
             _dbContext.SaveChanges();
         }
 
-        public Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
+        public async Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
         {
-            var bankAccount = (BankAccount?) null;
-            return Task.FromResult(bankAccount);
+            var record = await _dbContext.BankAccounts
+                .Where(e => e.AccountNumber == accountNumber.Value)
+                .SingleOrDefaultAsync();
+
+            if(record == null)
+            {
+                return null;
+            }
+
+            return Get(record);
         }
 
         public void Update(BankAccount bankAccount)
@@ -46,6 +55,17 @@ namespace Optivem.Kata.Banking.Infrastructure
                 OpeningDate = bankAccount.OpeningDate.ToDateTime(TimeOnly.MinValue),
                 Balance = bankAccount.Balance.IntValue,
             };
+        }
+
+        private BankAccount Get(BankAccountRecord record)
+        {
+            return BankAccountBuilder.BankAccount()
+                .WithAccountId(AccountId.From(record.Id))
+                .WithAccountNumber(AccountNumber.From(record.AccountNumber))
+                .WithAccountHolderName(AccountHolderName.From(record.FirstName, record.LastName))
+                .WithOpeningDate(DateOnly.FromDateTime(record.OpeningDate))
+                .WithBalance(Balance.From(record.Balance))
+                .Build();
         }
     }
 }

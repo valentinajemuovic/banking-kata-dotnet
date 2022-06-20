@@ -17,11 +17,13 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
     public class BankAccountRepositoryTest : BaseTest
     {
         private readonly IBankAccountRepository _repository;
+        private readonly IAccountIdGenerator _accountIdGenerator;
         private readonly IAccountNumberGenerator _accountNumberGenerator;
 
         public BankAccountRepositoryTest(HostFixture fixture) : base(fixture)
         {
             _repository = GetService<IBankAccountRepository>();
+            _accountIdGenerator = GetService<IAccountIdGenerator>();
             _accountNumberGenerator = GetService<IAccountNumberGenerator>();
         }
 
@@ -36,13 +38,11 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
             bankAccount.Should().BeNull();
         }
 
-        [Fact(Skip = "In progress")]
+        [Fact]
         public async Task Should_retrieve_added_bank_account()
         {
-            var accountNumber = _accountNumberGenerator.Next();
-            var bankAccount = BankAccountTestBuilder.BankAccount()
-                .WithAccountNumber(accountNumber.Value) // TODO: VC: Refactor with common builder
-                .Build();
+            var bankAccount = CreateSomeBankAccount();
+            var accountNumber = bankAccount.AccountNumber;
 
             _repository.Add(bankAccount);
 
@@ -51,6 +51,16 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
             retrievedBankAccount.Should().BeEquivalentTo(bankAccount);
         }
 
+        private BankAccount CreateSomeBankAccount()
+        {
+            var accountId = _accountIdGenerator.Next();
+            var accountNumber = _accountNumberGenerator.Next();
+
+            return BankAccountBuilder.BankAccount()
+                .WithAccountId(accountId)
+                .WithAccountNumber(accountNumber)
+                .Build();
+        }
 
     }
 }

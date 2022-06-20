@@ -14,7 +14,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Persistence
         {
         }
 
-        public virtual DbSet<BankAccountRecord>? BankAccounts { get; set; }
+        public virtual DbSet<BankAccountRecord> BankAccounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
