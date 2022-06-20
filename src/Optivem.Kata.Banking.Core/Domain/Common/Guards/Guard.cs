@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Optivem.Kata.Banking.Core.Domain.Common.Guards
 {
-    public static class StringGuardExtensions
+    public static class Guard
     {
-        public static string GuardAgainstNullOrWhiteSpace(this string? value, string message)
+        public static void Against(this Func<bool> func, string message)
         {
-            Guard.Against(() => string.IsNullOrWhiteSpace(value), message);
-            return value;
+            if (func())
+            {
+                throw new ValidationException(message);
+            }
         }
     }
 }

@@ -11,12 +11,13 @@ namespace Optivem.Kata.Banking.Core.Domain.Common.Guards
     {
         public static T GuardAgainstEmpty<T>(this T value, string message)
         {
-            if (value == null || value.Equals(default(T)))
-            {
-                throw new ValidationException(message);
-            }
-
+            Guard.Against(() => IsEmpty(value), message);
             return value;
+        }
+
+        private static bool IsEmpty<T>(T value)
+        {
+            return value == null || value.Equals(default(T));
         }
     }
 }

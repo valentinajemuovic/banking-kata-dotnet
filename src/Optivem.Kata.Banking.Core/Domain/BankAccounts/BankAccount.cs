@@ -27,10 +27,7 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
 
         public void Withdraw(TransactionAmount amount)
         {
-            if (Balance.IsLessThan(amount))
-            {
-                throw new ValidationException(ValidationMessages.InsufficientFunds);
-            }
+            Guard.Against(() => Balance.IsLessThan(amount), ValidationMessages.InsufficientFunds);
 
             Balance = Balance.Subtract(amount);
         }

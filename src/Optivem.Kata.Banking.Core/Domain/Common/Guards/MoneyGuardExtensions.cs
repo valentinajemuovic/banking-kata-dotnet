@@ -12,21 +12,13 @@ namespace Optivem.Kata.Banking.Core.Domain.Common.Guards
     {
         public static Money GuardAgainstNegative(this Money value, string message)
         {
-            if (value.IsNegative())
-            {
-                throw new ValidationException(message);
-            }
-
+            Guard.Against(value.IsNegative, message);
             return value;
         }
 
         public static Money GuardAgainstNonPositive(this Money value, string message)
         {
-            if (value.IsZeroOrNegative())
-            {
-                throw new ValidationException(message);
-            }
-
+            Guard.Against(value.IsZeroOrNegative, message);
             return value;
         }
     }
