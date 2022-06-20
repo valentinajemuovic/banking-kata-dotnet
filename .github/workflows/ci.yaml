@@ -14,6 +14,8 @@ jobs:
         uses: Particular/install-sql-server-action@main
         with:
           connection-string-env-var: SQL_SERVER_CONNECTION_STRING
+      - name: Install .NET EF Tools
+        run: dotnet tool install --global dotnet-ef
       - name: Update Database
         run: dotnet ef database update --project .\src\Optivem.Kata.Banking.Infrastructure
       - name: Run Build
