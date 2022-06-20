@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<!-- Source: https://docs.microsoft.com/en-us/visualstudio/test/configure-unit-tests-by-using-a-dot-runsettings-file?branch=release-16.4&view=vs-2019#example-runsettings-file -->
+	<!-- Configurations that affect the Test Framework -->
+
+	<RunConfiguration>
+		<EnvironmentVariables>
+			<SDK_PATH>Some path</SDK_PATH>
+			<SQL_SERVER_CONNECTION_STRING>Data Source=localhost;Initial Catalog=BankingKata;Integrated Security=True;MultipleActiveResultSets=True;</SQL_SERVER_CONNECTION_STRING>
+		</EnvironmentVariables>
+	</RunConfiguration>
+</RunSettings>

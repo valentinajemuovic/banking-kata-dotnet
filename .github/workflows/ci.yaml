@@ -10,6 +10,12 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '6.0.x'
+      - name: Install SQL Server
+        uses: Particular/install-sql-server-action@main
+        with:
+          connection-string-env-var: SQL_SERVER_CONNECTION_STRING
+      - name: Update Database
+        run: dotnet ef database update --project .\src\Optivem.Kata.Banking.Infrastructure
       - name: Run Build
         run: dotnet build
       - name: Run Tests

@@ -22,9 +22,12 @@ namespace Optivem.Kata.Banking.Web.Extensions
             services.AddScoped<IDateTimeService, DateTimeService>();
             services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 
+            // var connectionString = configuration.GetConnectionString("BankingDatabase");
+            var connectionString = Environment.GetEnvironmentVariable("SQL_SERVER_CONNECTION_STRING");
+
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("BankingDatabase"), b => b.MigrationsAssembly("Optivem.Kata.Banking.Infrastructure"));
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Optivem.Kata.Banking.Infrastructure"));
             });
 
             services.AddMediatR(typeof(CoreModule));

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -11,13 +11,14 @@
   "profiles": {
     "Optivem.Kata.Banking.Web": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7251;http://localhost:5251",
       "environmentVariables": {
+        "SQL_SERVER_CONNECTION_STRING": "Data Source=localhost;Initial Catalog=BankingKata;Integrated Security=True;MultipleActiveResultSets=True;",
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:7251;http://localhost:5251",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",

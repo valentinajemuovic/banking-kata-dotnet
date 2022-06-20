@@ -23,11 +23,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE08FCE5-B7A9-4C14-B4CD-2556AEA39C61}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		test.runsettings = test.runsettings
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Infrastructure", "src\Optivem.Kata.Banking.Infrastructure\Optivem.Kata.Banking.Infrastructure.csproj", "{5ED71E33-2789-42BF-BA97-309E0BF23576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optivem.Kata.Banking.Web", "src\Optivem.Kata.Banking.Web\Optivem.Kata.Banking.Web.csproj", "{60BF7524-33C9-4FF0-9A90-9FD89590C091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Optivem.Kata.Banking.Web", "src\Optivem.Kata.Banking.Web\Optivem.Kata.Banking.Web.csproj", "{60BF7524-33C9-4FF0-9A90-9FD89590C091}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

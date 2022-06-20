@@ -12,7 +12,8 @@ namespace Optivem.Kata.Banking.Infrastructure.Persistence
     {
         public DatabaseContext CreateDbContext(string[] args)
         {
-            var connectionString = "Data Source=localhost;Initial Catalog=BankingKata;Integrated Security=True;MultipleActiveResultSets=True;";
+            // var connectionString = configuration.GetConnectionString("BankingDatabase");
+            var connectionString = Environment.GetEnvironmentVariable("SQL_SERVER_CONNECTION_STRING");
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseSqlServer(connectionString);
 

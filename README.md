@@ -22,6 +22,22 @@ dotnet tool install --global dotnet-ef
 ```
 
 
+Set Environment variables in Visual Studio for Optivem.Kata.Banking.Web:
+1. Right-hand click the project Optivem.Kata.Banking.Web
+2. Click on "Properties"
+3. Select "Debug" from the left-hand side menu
+4. Inside "General" click on "Open debug launch profiles UI"
+5. In the section "Environment variables" input the following (feel free to adapt the SQL_SERVER_CONNECTION_STRING based on your local machine):
+
+```
+ASPNETCORE_ENVIRONMENT=Development,SQL_SERVER_CONNECTION_STRING=Data Source/=localhost;Initial Catalog/=BankingKata;Integrated Security/=True;MultipleActiveResultSets/=True;
+```
+
+For running the tests, the environment variable `SQL_SERVER_CONNECTION_STRING` needs to be configered in Solution Items > `test.runsettings`.
+
+Inside Visual Studio, click on Test > Configure Run Settings > Select Solution Wide runsettings File, then select `test.runsettings` (note: this is temporary since I saw that Autodetect wasn't working, but I will try again to find a solution for Autodetect).
+
+
 ## Instructions
 
 Update Database:
