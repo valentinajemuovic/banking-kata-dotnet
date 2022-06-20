@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Newtonsoft.Json;
+using Optivem.Kata.Banking.System.Test.Controllers.Common;
 using Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders;
 using System;
 using System.Collections.Generic;
@@ -12,34 +13,17 @@ using Xunit;
 
 namespace Optivem.Kata.Banking.System.Test.Controllers
 {
-    public class BankAccountControllerSystemTest : IDisposable
+    public class BankAccountControllerSystemTest : BaseTest
     {
-        private readonly HttpClient _client;
-
-        public BankAccountControllerSystemTest()
+        public BankAccountControllerSystemTest(HostFixture fixture) : base(fixture)
         {
-            var application = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(builder =>
-                {
-                    // var configuration = builder.Ser
 
-                    // builder.ConfigureServices(services => services.Register(builder.Conf))
-                    // TODO: VC: Configure
-                });
-
-            _client = application.CreateClient();
         }
-
-        public void Dispose()
-        {
-            _client.Dispose();
-        }
-
 
         [Fact]
         public async Task Nothing()
         {
-            var response = await _client.GetAsync("weather");
+            var response = await Client.GetAsync("weather");
 
             response.EnsureSuccessStatusCode();
 
@@ -56,7 +40,7 @@ namespace Optivem.Kata.Banking.System.Test.Controllers
             var json = JsonConvert.SerializeObject(request);
             var body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _client.PostAsync(url, body);
+            var response = await Client.PostAsync(url, body);
 
             response.EnsureSuccessStatusCode();
         }
