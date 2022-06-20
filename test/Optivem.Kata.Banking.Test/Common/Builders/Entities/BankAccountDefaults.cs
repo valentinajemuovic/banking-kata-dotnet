@@ -8,6 +8,7 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 {
     internal class BankAccountDefaults
     {
+        public const long DefaultAccountId = 322352352342;
         public const string DefaultAccountNumber = "GB10BARC20040184197751";
         public const string DefaultFirstName = "John";
         public const string DefaultLastName = "Smith";

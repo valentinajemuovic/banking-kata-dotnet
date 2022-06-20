@@ -10,6 +10,7 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
             return new BankAccountTestBuilder();
         }
 
+        private long _accountId;
         private string _accountNumber;
         private string _firstName;
         private string _lastName;
@@ -18,6 +19,7 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
 
         public BankAccountTestBuilder()
         {
+            _accountId = BankAccountDefaults.DefaultAccountId;
             _accountNumber = BankAccountDefaults.DefaultAccountNumber;
             _firstName = BankAccountDefaults.DefaultFirstName;
             _lastName = BankAccountDefaults.DefaultLastName;
@@ -25,6 +27,10 @@ namespace Optivem.Kata.Banking.Test.Common.Builders.Entities
             _balance = BankAccountDefaults.DefaultBalance;
         }
 
+        public BankAccountTestBuilder WithAccountId(long accountId)
+        {
+            throw new NotImplementedException();
+        }
         public BankAccountTestBuilder WithAccountNumber(string accountNumber)
         {
             _accountNumber = accountNumber;
