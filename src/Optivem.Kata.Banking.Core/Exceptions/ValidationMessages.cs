@@ -11,5 +11,6 @@
         public const string InsufficientFunds = "Insufficient funds";
         public const string AccountIdEmpty = "Account ID is empty";
         public const string AccountHolderNameEmpty = "Account holder name is empty";
+        public const string OpeningDateEmpty = "Opening date is empty";
     }
 }
