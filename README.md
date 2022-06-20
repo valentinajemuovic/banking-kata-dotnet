@@ -40,23 +40,28 @@ Inside Visual Studio, click on Test > Configure Run Settings > Select Solution W
 
 ## Instructions
 
-Update Database:
+Environment Variables
 
 ```
 $env:SQL_SERVER_CONNECTION_STRING='Data Source=localhost;Initial Catalog=BankingKata;Integrated Security=True;MultipleActiveResultSets=True;'
+```
+
+Update Database:
+
+```
 dotnet ef database update --project .\src\Optivem.Kata.Banking.Infrastructure
 ```
 
 Run Build
 
 ```
-dotnet build Optivem.Kata.Banking.sln
+dotnet build
 ```
 
 Run Tests:
 
 ```
-dotnet test Optivem.Kata.Banking.sln
+dotnet test
 ```
 
 ## Migrations
