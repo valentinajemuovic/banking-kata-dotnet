@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Optivem.Kata.Banking.Test.System
+namespace Optivem.Kata.Banking.System.Test.Controllers
 {
     public class BankAccountControllerSystemTest : IDisposable
     {

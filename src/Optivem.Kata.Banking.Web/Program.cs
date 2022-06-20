@@ -1,4 +1,4 @@
-using Optivem.Kata.Banking.Web.Extensions;
+using Optivem.Kata.Banking.CompositionRoot.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

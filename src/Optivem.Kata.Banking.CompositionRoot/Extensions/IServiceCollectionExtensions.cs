@@ -8,7 +8,7 @@ using Optivem.Kata.Banking.Core.Domain.Time;
 using Optivem.Kata.Banking.Infrastructure;
 using Optivem.Kata.Banking.Infrastructure.Persistence;
 
-namespace Optivem.Kata.Banking.Web.Extensions
+namespace Optivem.Kata.Banking.CompositionRoot.Extensions
 {
     public static class IServiceCollectionExtensions
     {

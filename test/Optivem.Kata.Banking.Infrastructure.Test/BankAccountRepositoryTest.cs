@@ -1,9 +1,10 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Optivem.Kata.Banking.CompositionRoot.Extensions;
 using Optivem.Kata.Banking.Core.Domain.BankAccounts;
+using Optivem.Kata.Banking.Infrastructure.Test.Common;
 using Optivem.Kata.Banking.Test.Common.Builders.Entities;
-using Optivem.Kata.Banking.Web.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,37 +14,15 @@ using Xunit;
 
 namespace Optivem.Kata.Banking.Test.Infrastructure
 {
-    public class BankAccountRepositoryTest : IDisposable
+    public class BankAccountRepositoryTest : BaseTest
     {
-        private readonly IHost _host;
-
-        // private readonly DatabaseContext _dbContext;
         private readonly IBankAccountRepository _repository;
         private readonly IAccountNumberGenerator _accountNumberGenerator;
 
-        public BankAccountRepositoryTest()
+        public BankAccountRepositoryTest(HostFixture fixture) : base(fixture)
         {
-            var args = new string[] { };
-            _host = Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) => services.Register(hostContext.Configuration))
-                .Build();
-
-            // TODO: VC: Move to DI container and then use from DI, similarly for context disposal
-            // var connectionString = "Data Source=localhost;Initial Catalog=BankingKata;Integrated Security=True;MultipleActiveResultSets=True;";
-            // var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            // optionsBuilder.UseSqlServer(connectionString);
-
-            // _dbContext = new DatabaseContext(optionsBuilder.Options);
-            // _repository = new BankAccountRepository(_dbContext);
-
-            _repository = _host.Services.GetRequiredService<IBankAccountRepository>();
-            _accountNumberGenerator = _host.Services.GetRequiredService<IAccountNumberGenerator>();
-        }
-
-        public void Dispose()
-        {
-            // _dbContext.Dispose();
-            _host.Dispose();
+            _repository = GetService<IBankAccountRepository>();
+            _accountNumberGenerator = GetService<IAccountNumberGenerator>();
         }
 
         [Fact]

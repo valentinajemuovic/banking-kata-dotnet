@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using Optivem.Kata.Banking.Core.Domain.BankAccounts;
 using Optivem.Kata.Banking.Infrastructure;
+using Optivem.Kata.Banking.Infrastructure.Test.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,13 @@ using Xunit;
 
 namespace Optivem.Kata.Banking.Test.Infrastructure
 {
-    public class AccountNumberGeneratorTest
+    public class AccountNumberGeneratorTest : BaseTest
     {
-        private readonly AccountNumberGenerator _generator; 
+        private readonly IAccountNumberGenerator _generator;
 
-        public AccountNumberGeneratorTest()
+        public AccountNumberGeneratorTest(HostFixture fixture) : base(fixture)
         {
-            _generator = new AccountNumberGenerator();
+            _generator = GetService<IAccountNumberGenerator>();
         }
 
         [Fact]

@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using Optivem.Kata.Banking.Core.Domain.Time;
 using Optivem.Kata.Banking.Infrastructure;
+using Optivem.Kata.Banking.Infrastructure.Test.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,13 @@ using Xunit;
 
 namespace Optivem.Kata.Banking.Test.Infrastructure
 {
-    public class DateTimeServiceTest
+    public class DateTimeServiceTest : BaseTest
     {
-        private readonly DateTimeService _dateTimeService;
+        private readonly IDateTimeService _dateTimeService;
 
-        public DateTimeServiceTest()
+        public DateTimeServiceTest(HostFixture fixture) : base(fixture)
         {
-            _dateTimeService = new DateTimeService();
+            _dateTimeService = GetService<IDateTimeService>();
         }
 
         [Fact]
