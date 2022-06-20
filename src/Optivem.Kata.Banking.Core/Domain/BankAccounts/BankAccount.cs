@@ -7,6 +7,8 @@ namespace Optivem.Kata.Banking.Core.Domain.BankAccounts
         public BankAccount(AccountId accountId, AccountNumber accountNumber, AccountHolderName accountHolderName, DateOnly openingDate, Balance balance)
         {
             GuardAgainstEmpty(accountId, ValidationMessages.AccountIdEmpty);
+            GuardAgainstEmpty(accountNumber, ValidationMessages.AccountNumberEmpty);
+            GuardAgainstEmpty(accountHolderName, ValidationMessages.AccountHolderNameEmpty);
 
             AccountId = accountId;
             AccountNumber = accountNumber;

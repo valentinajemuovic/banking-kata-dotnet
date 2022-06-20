@@ -32,6 +32,28 @@ namespace Optivem.Kata.Banking.Test.Domain
                 .WithMessage(ValidationMessages.AccountIdEmpty);
         }
 
+        [Fact]
+        public void Should_throw_exception_given_empty_account_number()
+        {
+            Action action = () => GetDefaultBuilder()
+                .WithAccountNumber(default(AccountNumber))
+                .Build();
+
+            action.Should().Throw<ValidationException>()
+                .WithMessage(ValidationMessages.AccountNumberEmpty);
+        }
+
+        [Fact]
+        public void Should_throw_exception_given_empty_account_holder_name()
+        {
+            Action action = () => GetDefaultBuilder()
+                .WithAccountHolderName(default(AccountHolderName))
+                .Build();
+
+            action.Should().Throw<ValidationException>()
+                .WithMessage(ValidationMessages.AccountHolderNameEmpty);
+        }
+
         private BankAccountBuilder GetDefaultBuilder()
         {
             var accountId = AccountId.From(BankAccountDefaults.DefaultAccountId);

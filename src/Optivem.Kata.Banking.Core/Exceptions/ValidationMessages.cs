@@ -10,5 +10,6 @@
         public const string AccountNumberNotExist = "Account number does not exist";
         public const string InsufficientFunds = "Insufficient funds";
         public const string AccountIdEmpty = "Account ID is empty";
+        public const string AccountHolderNameEmpty = "Account holder name is empty";
     }
 }
