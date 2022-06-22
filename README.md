@@ -21,6 +21,11 @@ Tool dotnet-ef needs to be installed:
 dotnet tool install --global dotnet-ef
 ```
 
+Installing Stryker:
+
+```
+dotnet tool install -g dotnet-stryker
+```
 
 Set Environment variables in Visual Studio for Optivem.Kata.Banking.Web:
 1. Right-hand click the project Optivem.Kata.Banking.Web
@@ -63,6 +68,14 @@ Run Tests:
 ```
 dotnet test
 ```
+
+Run Mutation Testing:
+
+```
+cd .\test\Optivem.Kata.Banking.Core.Test
+PM> dotnet stryker
+```
+
 
 ## Migrations
 
