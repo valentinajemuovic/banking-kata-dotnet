@@ -92,3 +92,7 @@ To remove a migration:
 ```
 dotnet ef migrations remove --project .\src\Optivem.Kata.Banking.Infrastructure
 ```
+
+## Contributing
+
+If you'd like to contribute, see instructions here https://github.com/valentinacupac/banking-kata-dotnet/blob/main/CONTRIBUTING.md
