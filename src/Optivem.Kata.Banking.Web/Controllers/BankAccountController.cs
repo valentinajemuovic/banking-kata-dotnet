@@ -19,7 +19,6 @@ namespace Optivem.Kata.Banking.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<OpenAccountResponse>> OpenAccount(OpenAccountRequest request)
         {
-            // TODO: VC: Helpr base method which is async
             var response = await _mediator.Send(request);
             return CreatedAtAction(nameof(ViewAccount), new { accountNumber = response.AccountNumber }, response);
         }
