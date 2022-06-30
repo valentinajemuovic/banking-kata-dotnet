@@ -11,6 +11,7 @@ using Optivem.Kata.Banking.Test.Common.Data;
 using Optivem.Kata.Banking.Test.Common.Extensions;
 using Optivem.Kata.Banking.Test.Common.Givens;
 using Optivem.Kata.Banking.Test.Common.Setup;
+using Optivem.Kata.Banking.Test.Common.Utilities;
 using Optivem.Kata.Banking.Test.Common.Verification;
 using Xunit;
 using static Optivem.Kata.Banking.Test.Common.Builders.RequestBuilders.OpenAccountRequestBuilder;
@@ -40,7 +41,7 @@ namespace Optivem.Kata.Banking.Test.UseCases
         public async Task Should_open_account_given_valid_request(string firstName, string lastName, int balance,
             long generatedAccountId, string generatedAccountNumber, string openingDateString)
         {
-            var openingDate = DateOnly.Parse(openingDateString); // TODO: VC: Make utility function
+            var openingDate = DateOnlyUtils.From(openingDateString);
             var openingDateTime = openingDate.ToDateTime(TimeOnly.MinValue);
 
             _accountIdGenerator.WillGenerate(generatedAccountId);
