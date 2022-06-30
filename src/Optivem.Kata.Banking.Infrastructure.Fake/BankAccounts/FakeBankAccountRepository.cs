@@ -14,7 +14,7 @@ namespace Optivem.Kata.Banking.Infrastructure.Fake.BankAccounts
             _bankAccounts = new Dictionary<AccountNumber, BankAccount>();
         }
 
-        public Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
+        public Task<BankAccount?> GetAsync(AccountNumber accountNumber)
         {
             if (!Contains(accountNumber))
             {

@@ -110,7 +110,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             _repository.Add(bankAccount);
 
-            var retrievedBankAccount = await _repository.GetByAccountNumberAsync(AccountNumber.From(accountNumber));
+            var retrievedBankAccount = await _repository.GetAsync(AccountNumber.From(accountNumber));
 
             retrievedBankAccount.Should().NotBeNull();
 
@@ -138,7 +138,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure.Fake
 
             _repository.Add(bankAccount);
 
-            var retrievedBankAccount = await _repository.GetByAccountNumberAsync(AccountNumber.From(accountNumber));
+            var retrievedBankAccount = await _repository.GetAsync(AccountNumber.From(accountNumber));
 
             retrievedBankAccount.Should().NotBeNull();
 

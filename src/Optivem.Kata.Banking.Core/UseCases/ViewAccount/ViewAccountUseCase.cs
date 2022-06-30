@@ -21,7 +21,7 @@ namespace Optivem.Kata.Banking.Core.UseCases.ViewAccount
         public async Task<ViewAccountResponse> Handle(ViewAccountRequest request, CancellationToken cancellationToken)
         {
             var accountNumber = AccountNumber.From(request.AccountNumber);
-            var bankAccount = await _bankAccountRepository.GetByAccountNumberAsync(accountNumber);
+            var bankAccount = await _bankAccountRepository.GetAsync(accountNumber);
 
             if (bankAccount == null)
             {

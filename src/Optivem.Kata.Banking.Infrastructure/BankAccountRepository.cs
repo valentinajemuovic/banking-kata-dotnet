@@ -25,7 +25,7 @@ namespace Optivem.Kata.Banking.Infrastructure
             _dbContext.SaveChanges();
         }
 
-        public async Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber)
+        public async Task<BankAccount?> GetAsync(AccountNumber accountNumber)
         {
             var record = await _dbContext.BankAccounts
                 .Where(e => e.AccountNumber == accountNumber.Value)

@@ -32,8 +32,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
         {
             var accountNumber = AccountNumber.From(BankAccountDefaults.DefaultAccountNumber);
 
-            // TODO: VC: Refactor name
-            var bankAccount = await _repository.GetByAccountNumberAsync(accountNumber);
+            var bankAccount = await _repository.GetAsync(accountNumber);
 
             bankAccount.Should().BeNull();
         }
@@ -46,7 +45,7 @@ namespace Optivem.Kata.Banking.Test.Infrastructure
 
             _repository.Add(bankAccount);
 
-            var retrievedBankAccount = await _repository.GetByAccountNumberAsync(accountNumber);
+            var retrievedBankAccount = await _repository.GetAsync(accountNumber);
 
             retrievedBankAccount.Should().BeEquivalentTo(bankAccount);
         }

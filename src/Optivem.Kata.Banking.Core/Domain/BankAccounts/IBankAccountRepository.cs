@@ -2,7 +2,7 @@
 {
     public interface IBankAccountRepository
     {
-        public Task<BankAccount?> GetByAccountNumberAsync(AccountNumber accountNumber);
+        public Task<BankAccount?> GetAsync(AccountNumber accountNumber);
 
         public void Add(BankAccount bankAccount);
         void Update(BankAccount bankAccount);

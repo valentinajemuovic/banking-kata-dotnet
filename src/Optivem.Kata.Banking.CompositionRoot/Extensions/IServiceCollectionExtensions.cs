@@ -14,9 +14,6 @@ namespace Optivem.Kata.Banking.CompositionRoot.Extensions
     {
         public static void Register(this IServiceCollection services, IConfiguration configuration)
         {
-
-
-            // TODO: VC: Move to Startup to enable re-use by tests
             services.AddScoped<IAccountIdGenerator, AccountIdGenerator>();
             services.AddScoped<IAccountNumberGenerator, AccountNumberGenerator>();
             services.AddScoped<IDateTimeService, DateTimeService>();
