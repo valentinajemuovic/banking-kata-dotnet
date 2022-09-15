@@ -1,10 +1,12 @@
 # Banking Kata (.NET)
 
-## Introduction
-
-This demo was created for the purposes of meetup series on TDD & Clean Architecture. See the [YouTube Meetups](https://journal.optivem.com/p/foundations-of-tdd-and-clean-architecture). Please note that this project is purely for demo purposes only, as educational material for foundational knowledge only.
-
 [![CI](https://github.com/valentinacupac/banking-kata-dotnet/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/valentinacupac/banking-kata-dotnet/actions/workflows/ci.yaml)
+
+## Purpose
+
+This demo was created for the purposes of meetup series on TDD & Clean Architecture. See the [YouTube Meetups](https://journal.optivem.com/p/foundations-of-tdd-and-clean-architecture). Please note that this project is purely for demo purposes only.
+
+## Introduction
 
 This Banking Kata illustates the application of TDD and Clean Architecture with a Use Case Driven Approach in .NET.
 
